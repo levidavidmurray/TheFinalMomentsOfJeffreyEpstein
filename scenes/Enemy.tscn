@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://dc8ul4wbvo0vs"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_np2c2"]
+[ext_resource type="AudioStream" uid="uid://0ydy3gqem8lw" path="res://sfx/Hell Beast Attack 011.wav" id="2_h0h0d"]
+[ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="2_xi6h7"]
+[ext_resource type="AudioStream" uid="uid://c2l7qb27u5mcq" path="res://sfx/Hell Beast Dies 003.wav" id="3_vqty6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv5ll"]
+albedo_color = Color(0.831373, 0.313726, 0.329412, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_63y77"]
+material = SubResource("StandardMaterial3D_mv5ll")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k5i5i"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="Animation" id="Animation_q27yo"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.298039, 0.164706, 0.12549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ofnt1"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.831373, 0.313726, 0.329412, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qb2uv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.831373, 0.313726, 0.329412, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_katud"]
+_data = {
+"Death": SubResource("Animation_q27yo"),
+"Idle": SubResource("Animation_ofnt1"),
+"RESET": SubResource("Animation_qb2uv")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_785x3"]
+radius = 9.85507
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 5
+script = ExtResource("1_np2c2")
+sfx_aggro = ExtResource("2_h0h0d")
+sfx_death = ExtResource("3_vqty6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_63y77")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_k5i5i")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_xi6h7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_katud")
+}
+
+[node name="AttackBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994372, 0)
+shape = SubResource("CylinderShape3D_785x3")
+
+[node name="AggroBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994372, 0)
+shape = SubResource("CylinderShape3D_785x3")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="."]
+
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
+[connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_entered" from="AggroBox" to="." method="_on_aggro_box_body_entered"]
+[connection signal="body_exited" from="AggroBox" to="." method="_on_aggro_box_body_exited"]

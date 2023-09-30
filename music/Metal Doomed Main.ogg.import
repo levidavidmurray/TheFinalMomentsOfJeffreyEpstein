@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cmbdj15qdixwv"
+path="res://.godot/imported/Metal Doomed Main.ogg-7735c5c43f458e9ab1496157dfd36427.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Metal Doomed Main.ogg"
+dest_files=["res://.godot/imported/Metal Doomed Main.ogg-7735c5c43f458e9ab1496157dfd36427.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
