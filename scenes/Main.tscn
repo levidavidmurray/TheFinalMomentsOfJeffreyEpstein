@@ -2,23 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://bb2xr3x6yrncg" path="res://scenes/Player.tscn" id="1_1o0h1"]
 [ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/default_env.tres" id="1_3jqn5"]
+[ext_resource type="Material" uid="uid://do81qbv5o3b28" path="res://materials/mat_Blood.tres" id="2_is2d4"]
 [ext_resource type="PackedScene" uid="uid://dc8ul4wbvo0vs" path="res://scenes/Enemy.tscn" id="2_uiqrc"]
 [ext_resource type="AudioStream" uid="uid://cmbdj15qdixwv" path="res://music/Metal Doomed Main.ogg" id="4_10rpk"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i0avu"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hf7v"]
-transparency = 1
-albedo_color = Color(0.705882, 0, 0.0431373, 1)
-metallic = 0.2
-roughness = 0.1
-emission_enabled = true
-emission = Color(0.603922, 0, 0, 1)
-backlight = Color(1, 1, 1, 1)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_llbcy"]
-material = SubResource("StandardMaterial3D_6hf7v")
+material = ExtResource("2_is2d4")
 size = Vector2(100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tvka"]
@@ -98,9 +90,23 @@ transform = Transform3D(-6.19168, -3.2133, 23.4377, -27.0409, 41.5529, -4.6932, 
 mesh = SubResource("BoxMesh_40a16")
 
 [node name="Player" parent="." instance=ExtResource("1_1o0h1")]
+speed = 10.0
+acceleration = 50.0
 
 [node name="Enemy" parent="." instance=ExtResource("2_uiqrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520911, 0, -12.2158)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520911, 0, -13.3284)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_uiqrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.80601, 0, -22.7405)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_uiqrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19926, 0, -33.6361)
+
+[node name="Enemy4" parent="." instance=ExtResource("2_uiqrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3938, 0, -43.1568)
+
+[node name="Enemy5" parent="." instance=ExtResource("2_uiqrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2464, 0, 0.845699)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_10rpk")

@@ -9,7 +9,7 @@ class_name Gun extends Node3D
 
 # bullets
 @onready var bullet_scene: PackedScene = preload("res://scenes/Bullet.tscn")
-var bullet_instance
+var bullet_instance: Bullet
 
 func can_shoot() -> bool:
 	return !anim.is_playing()
@@ -20,6 +20,7 @@ func shoot():
 	bullet_instance = bullet_scene.instantiate()
 	bullet_instance.position = gun_barrel.global_position
 	bullet_instance.transform.basis = gun_barrel.global_transform.basis
+	bullet_instance.damage = damage
 	get_tree().root.add_child(bullet_instance)
 
 	var gunshot_index = randi() % sfx_gunshot.size()

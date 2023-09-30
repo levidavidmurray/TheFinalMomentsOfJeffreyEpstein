@@ -53,14 +53,17 @@ func is_dead() -> bool:
 func _on_health_component_death():
 	sfx.stream = sfx_death
 	sfx.play()
-	animator.play("Death")
+	sfx.finished.connect(func(): queue_free())
+	# animator.play("Death")
 
 func _on_attack_box_body_entered(body:Node3D):
+	if is_dead(): return
 	if body is Player:
 		body.take_damage(attack_damage)
 		# await get_tree().create_timer(attack_box_delay).timeout
 
 func _on_aggro_box_body_entered(body:Node3D):
+	if is_dead(): return
 	if body is Player:
 		sfx.stream = sfx_aggro
 		sfx.play()

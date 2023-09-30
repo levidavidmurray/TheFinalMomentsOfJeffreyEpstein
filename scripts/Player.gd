@@ -55,13 +55,8 @@ func take_damage(damage: float) -> void:
 	health_component.take_damage(damage)
 
 func handle_shoot() -> void:
-	if not gun.can_shoot():
-		return
-
-	gun.shoot()
-	var enemy = camera.get_shoot_enemy()
-	if enemy:
-		enemy.take_damage(gun.damage)
+	if gun.can_shoot():
+		gun.shoot()
 
 func _on_health_component_death():
 	print("player died")

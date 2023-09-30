@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bborry3obwcm7"]
+
+[ext_resource type="Script" path="res://scripts/EnemySpawnPoint.gd" id="1_24b35"]
+
+[node name="EnemySpawnPoint" type="Node3D"]
+script = ExtResource("1_24b35")

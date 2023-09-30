@@ -1,11 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb2xr3x6yrncg"]
+[gd_scene load_steps=20 format=3 uid="uid://bb2xr3x6yrncg"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_5goeo"]
 [ext_resource type="Script" path="res://scripts/Gun.gd" id="2_7jq0l"]
+[ext_resource type="AudioStream" uid="uid://cmpnyi3m1hv6e" path="res://sfx/footstep_blood_0.ogg" id="2_q5vd4"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_uidk2"]
+[ext_resource type="AudioStream" uid="uid://cs06853sfgckf" path="res://sfx/footstep_blood_1.ogg" id="3_2tkrd"]
 [ext_resource type="AudioStream" uid="uid://cugtwso78ymlj" path="res://sfx/Pistol Shot A.wav" id="3_t4d60"]
 [ext_resource type="AudioStream" uid="uid://gpxsrxkvlhjv" path="res://sfx/Pistol Shot B.wav" id="4_bsa7w"]
+[ext_resource type="AudioStream" uid="uid://ctqovct3j608s" path="res://sfx/footstep_blood_2.ogg" id="4_dhrq3"]
+[ext_resource type="AudioStream" uid="uid://xw3v6eyxuuma" path="res://sfx/footstep_blood_3.ogg" id="5_k8k4n"]
 [ext_resource type="AudioStream" uid="uid://bw5kdxcjiesc5" path="res://sfx/Pistol Shot C.wav" id="5_o3jd5"]
+[ext_resource type="AudioStream" uid="uid://5wytrqj7ybso" path="res://sfx/footstep_blood_4.ogg" id="6_d80hy"]
 [ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="7_luamq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kj3u"]
@@ -66,6 +71,7 @@ _data = {
 script = ExtResource("1_5goeo")
 speed = 7.0
 acceleration = 150.0
+sfx_footsteps = Array[AudioStream]([ExtResource("2_q5vd4"), ExtResource("3_2tkrd"), ExtResource("4_dhrq3"), ExtResource("5_k8k4n"), ExtResource("6_d80hy")])
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("7_luamq")
@@ -134,5 +140,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 color = Color(1, 1, 1, 0.513726)
+
+[node name="SFX_Footstep" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16573, 0)
+volume_db = -22.0
+attenuation_filter_cutoff_hz = 3000.0
 
 [connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]

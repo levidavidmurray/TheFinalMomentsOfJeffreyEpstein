@@ -1,4 +1,4 @@
-extends Node3D
+class_name Bullet extends Node3D
 
 const SPEED = 50.0
 
@@ -6,14 +6,17 @@ const SPEED = 50.0
 @onready var ray = $RayCast3D
 @onready var particles = $GPUParticles3D
 
-var hit
+var damage = 0
+var did_hit = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if did_hit: return
+
 	if ray.is_colliding():
-		if ray.get_collider() != hit:
-			hit = ray.get_collider()
-			print("Hit:", ray.get_collider())
+		did_hit = true
+		var body = ray.get_collider()
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
 		mesh.visible = false
 		particles.emitting = true
 		await get_tree().create_timer(1.0).timeout
