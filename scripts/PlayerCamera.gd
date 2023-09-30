@@ -9,6 +9,9 @@ func _physics_process(delta):
 	# _detect_interactions()
 	pass
 
+func shake():
+	$ScreenShake.apply_shake()
+
 func get_shoot_enemy() -> Enemy:
 	if shoot_ray.is_colliding():
 		var body = shoot_ray.get_collider()

@@ -1,9 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dc8ul4wbvo0vs"]
+[gd_scene load_steps=31 format=3 uid="uid://dc8ul4wbvo0vs"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_np2c2"]
 [ext_resource type="AudioStream" uid="uid://0ydy3gqem8lw" path="res://sfx/Hell Beast Attack 011.wav" id="2_h0h0d"]
 [ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="2_xi6h7"]
+[ext_resource type="AudioStream" uid="uid://copsiigqkdgf5" path="res://sfx/Hell Beast Attack 001.wav" id="3_jj1q3"]
 [ext_resource type="AudioStream" uid="uid://c2l7qb27u5mcq" path="res://sfx/Hell Beast Dies 003.wav" id="3_vqty6"]
+[ext_resource type="AudioStream" uid="uid://dorbbn8e8h848" path="res://sfx/Hell Beast Attack 008.wav" id="4_djeut"]
+[ext_resource type="AudioStream" uid="uid://s20q8svbwubh" path="res://sfx/Hell Beast Attack 010.wav" id="5_j6qnu"]
+[ext_resource type="AudioStream" uid="uid://cwjdqo23fefqq" path="res://sfx/Iron Fist Punch A.wav" id="6_hrwv3"]
+[ext_resource type="AudioStream" uid="uid://dnr2o8q23r2a5" path="res://sfx/Iron Fist Punch B.wav" id="7_t8ii3"]
+[ext_resource type="AudioStream" uid="uid://cndywxftg2lqs" path="res://sfx/Iron Fist Punch C.wav" id="8_05pwh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv5ll"]
 albedo_color = Color(0.701961, 0.054902, 0.0666667, 1)
@@ -30,13 +36,76 @@ _data = {
 "RESET": SubResource("Animation_qb2uv")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ohwsv"]
+radius = 1.29175
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_785x3"]
-radius = 9.85507
+radius = 30.0
+
+[sub_resource type="Gradient" id="Gradient_tijcv"]
+offsets = PackedFloat32Array(0.00342466, 1)
+colors = PackedColorArray(0.761463, 0.00530846, 0, 1, 0.761463, 0.00530846, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4umkb"]
+gradient = SubResource("Gradient_tijcv")
+
+[sub_resource type="Curve" id="Curve_p01al"]
+max_value = 100.0
+_data = [Vector2(0, 3.15789), 0.0, 751.579, 0, 0, Vector2(1, 96.8421), 437.143, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qvh32"]
+curve = SubResource("Curve_p01al")
+
+[sub_resource type="Curve" id="Curve_2bvre"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3kc4j"]
+curve = SubResource("Curve_2bvre")
+
+[sub_resource type="Curve" id="Curve_7ds8x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l7btk"]
+curve = SubResource("Curve_7ds8x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cc0yf"]
+lifetime_randomness = 1.0
+direction = Vector3(0, -1, -10)
+spread = 56.96
+gravity = Vector3(0, -9.8, -8.885)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+damping_curve = SubResource("CurveTexture_qvh32")
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_3kc4j")
+color_ramp = SubResource("GradientTexture1D_4umkb")
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 0.0
+turbulence_noise_speed = Vector3(0, -1, 0)
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.69
+turbulence_influence_over_life = SubResource("CurveTexture_l7btk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykgd3"]
+vertex_color_use_as_albedo = true
+roughness = 0.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_hydjo"]
+material = SubResource("StandardMaterial3D_ykgd3")
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 5
 script = ExtResource("1_np2c2")
+attack_damage = 4
+attack_interval = 1.15
+speed = 6.5
 sfx_aggro = ExtResource("2_h0h0d")
+sfx_attacks = Array[AudioStream]([ExtResource("3_jj1q3"), ExtResource("4_djeut"), ExtResource("5_j6qnu")])
+sfx_attacks_2 = Array[AudioStream]([ExtResource("6_hrwv3"), ExtResource("7_t8ii3"), ExtResource("8_05pwh")])
 sfx_death = ExtResource("3_vqty6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -59,7 +128,7 @@ libraries = {
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994372, 0)
-shape = SubResource("CylinderShape3D_785x3")
+shape = SubResource("CylinderShape3D_ohwsv")
 
 [node name="AggroBox" type="Area3D" parent="."]
 
@@ -69,7 +138,20 @@ shape = SubResource("CylinderShape3D_785x3")
 
 [node name="SFX" type="AudioStreamPlayer3D" parent="."]
 
+[node name="SFX2" type="AudioStreamPlayer3D" parent="."]
+
+[node name="DeathParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67878, 0)
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cc0yf")
+draw_pass_1 = SubResource("SphereMesh_hydjo")
+
 [connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
 [connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_exited" from="AttackBox" to="." method="_on_attack_box_body_exited"]
 [connection signal="body_entered" from="AggroBox" to="." method="_on_aggro_box_body_entered"]
 [connection signal="body_exited" from="AggroBox" to="." method="_on_aggro_box_body_exited"]

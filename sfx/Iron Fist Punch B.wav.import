@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dnr2o8q23r2a5"
+path="res://.godot/imported/Iron Fist Punch B.wav-ae882b3d2af1b795b204167c578621ad.sample"
+
+[deps]
+
+source_file="res://sfx/Iron Fist Punch B.wav"
+dest_files=["res://.godot/imported/Iron Fist Punch B.wav-ae882b3d2af1b795b204167c578621ad.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody3D
 
+signal death
+
 @export_category("Player")
 @export_range(1, 35, 1) var speed: float = 10 # m/s
 @export_range(10, 400, 1) var acceleration: float = 100 # m/s^2
@@ -9,6 +11,11 @@ class_name Player extends CharacterBody3D
 @export var take_damage_cd := 1.5
 @export var footstep_sfx_interval := 0.5
 @export var sfx_footsteps: Array[AudioStream] = []
+
+@onready var camera: PlayerCamera = $Camera
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var gun: Gun = $Camera/Gun
+@onready var sfx_footstep: AudioStreamPlayer3D = $SFX_Footstep
 
 var jumping: bool = false
 var mouse_captured: bool = false
@@ -25,25 +32,23 @@ var jump_vel: Vector3 # Jumping velocity
 var last_step_time := 0.0
 var footstep_index = 0
 
-@onready var camera: PlayerCamera = $Camera
-@onready var health_component: HealthComponent = $HealthComponent
-@onready var gun: Gun = $Camera/Gun
-@onready var sfx_footstep: AudioStreamPlayer3D = $SFX_Footstep
-
-
 func _ready() -> void:
 	capture_mouse()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("exit"): get_tree().quit()
+
+	if is_dead(): return
+
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
 		if mouse_captured: _rotate_camera()
 	if Input.is_action_just_pressed("jump"): jumping = true
-	if Input.is_action_just_pressed("exit"): get_tree().quit()
 	if Input.is_action_just_pressed("shoot"): handle_shoot()
 
 func _physics_process(delta: float) -> void:
-	if mouse_captured: _handle_joypad_camera_rotation(delta)
+	if is_dead(): return
+
 	velocity = _walk(delta) + _gravity(delta) + _jump(delta)
 
 	move_and_slide()
@@ -52,7 +57,12 @@ func _physics_process(delta: float) -> void:
 		_handle_footstep()
 
 func take_damage(damage: float) -> void:
+	print("Player took damage: ", damage)
+	camera.shake()
 	health_component.take_damage(damage)
+
+func is_dead() -> bool:
+	return health_component.is_dead()
 
 func handle_shoot() -> void:
 	if gun.can_shoot():
@@ -60,7 +70,7 @@ func handle_shoot() -> void:
 
 func _on_health_component_death():
 	print("player died")
-	pass # Replace with function body.
+	death.emit()
 
 # Input & Physics
 
@@ -75,14 +85,6 @@ func release_mouse() -> void:
 func _rotate_camera(sens_mod: float = 1.0) -> void:
 	camera.rotation.y -= look_dir.x * camera_sens * sens_mod
 	camera.rotation.x = clamp(camera.rotation.x - look_dir.y * camera_sens * sens_mod, -1.5, 1.5)
-
-func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void:
-	return
-	var joypad_dir: Vector2 = Input.get_vector("look_left","look_right","look_up","look_down")
-	if joypad_dir.length() > 0:
-		look_dir += joypad_dir * delta
-		_rotate_camera(sens_mod)
-		look_dir = Vector2.ZERO
 
 func _walk(delta: float) -> Vector3:
 	move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")

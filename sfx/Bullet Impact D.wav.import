@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://duec25frx362j"
+path="res://.godot/imported/Bullet Impact D.wav-2534956a20fc36d7375c0fbd342e579f.sample"
+
+[deps]
+
+source_file="res://sfx/Bullet Impact D.wav"
+dest_files=["res://.godot/imported/Bullet Impact D.wav-2534956a20fc36d7375c0fbd342e579f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

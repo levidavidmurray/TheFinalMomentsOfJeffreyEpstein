@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4syu5s2hyjq3"]
+[gd_scene load_steps=12 format=3 uid="uid://b4syu5s2hyjq3"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_c465p"]
+[ext_resource type="AudioStream" uid="uid://s5fw8p7t3vln" path="res://sfx/Bullet Impact A.wav" id="2_2bo03"]
 [ext_resource type="Material" uid="uid://lpolcfdmecp2" path="res://materials/mat_Bullet.tres" id="2_vypfi"]
+[ext_resource type="AudioStream" uid="uid://da2tl0tq1epye" path="res://sfx/Bullet Impact B.wav" id="3_8d568"]
 [ext_resource type="Material" uid="uid://dmurb816vx16l" path="res://materials/mat_BloodParticles.tres" id="3_87hch"]
+[ext_resource type="AudioStream" uid="uid://duv3h3gwq85fd" path="res://sfx/Bullet Impact C.wav" id="4_uumr4"]
+[ext_resource type="AudioStream" uid="uid://duec25frx362j" path="res://sfx/Bullet Impact D.wav" id="5_ih7la"]
+[ext_resource type="AudioStream" uid="uid://ci2dy04tpq12t" path="res://sfx/Bullet Impact E.wav" id="6_sglts"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pmv1s"]
 material = ExtResource("2_vypfi")
@@ -12,13 +17,15 @@ size = Vector3(0.05, 0.05, 1)
 direction = Vector3(0, 0, 1)
 initial_velocity_min = 3.0
 initial_velocity_max = 5.0
+scale_min = 0.05
+scale_max = 0.1
 
-[sub_resource type="BoxMesh" id="BoxMesh_a6p8v"]
+[sub_resource type="SphereMesh" id="SphereMesh_ib4dc"]
 material = ExtResource("3_87hch")
-size = Vector3(0.04, 0.04, 0.04)
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_c465p")
+sfx_impacts = Array[AudioStream]([ExtResource("2_2bo03"), ExtResource("3_8d568"), ExtResource("4_uumr4"), ExtResource("5_ih7la"), ExtResource("6_sglts")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_pmv1s")
@@ -31,14 +38,17 @@ collision_mask = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.571447)
 sorting_offset = 20.0
 emitting = false
+amount = 12
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_m0t3s")
-draw_pass_1 = SubResource("BoxMesh_a6p8v")
+draw_pass_1 = SubResource("SphereMesh_ib4dc")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="SFX_Impact" type="AudioStreamPlayer3D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
