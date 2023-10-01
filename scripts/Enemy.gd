@@ -1,5 +1,7 @@
 class_name Enemy extends CharacterBody3D
 
+signal death
+
 ## how long player has to stay in attack box before taking damage
 @export var attack_box_delay = 0.25
 @export var attack_damage = 3
@@ -86,6 +88,7 @@ func _on_health_component_death():
 	sfx.finished.connect(func(): queue_free())
 	death_particles.emitting = true
 	get_tree().root.add_child(death_particles)
+	death.emit()
 	# animator.play("Death")
 
 func _on_attack_box_body_entered(body:Node3D):

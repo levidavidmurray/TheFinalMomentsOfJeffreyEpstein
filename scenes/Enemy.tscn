@@ -97,7 +97,7 @@ roughness = 0.3
 [sub_resource type="SphereMesh" id="SphereMesh_hydjo"]
 material = SubResource("StandardMaterial3D_ykgd3")
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 3
 script = ExtResource("1_np2c2")
 attack_damage = 4

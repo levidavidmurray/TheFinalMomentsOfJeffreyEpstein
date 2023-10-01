@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://3dfsho5gpqt4"]
+
+[ext_resource type="Script" path="res://scripts/VisualNovel.gd" id="1_p0dih"]
+[ext_resource type="Texture2D" uid="uid://bjtmn8te8g00o" path="res://vn_screens/femme-hitler.png" id="1_x7doe"]
+[ext_resource type="Resource" uid="uid://ddpg4donpgqab" path="res://dialogue/hitler.dialogue" id="2_vospm"]
+
+[node name="VisualNovel" type="CanvasLayer"]
+script = ExtResource("1_p0dih")
+dialogue_resource = ExtResource("2_vospm")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x7doe")
+expand_mode = 2

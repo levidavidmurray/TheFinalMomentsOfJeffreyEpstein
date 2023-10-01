@@ -42,6 +42,7 @@ var is_hell_mode = false
 
 var was_grounded_last_frame = false
 var on_did_become_grounded: Callable
+var disable_input = false
 
 func _ready() -> void:
 	GameManager.player_ready(self)
@@ -50,7 +51,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("exit"): get_tree().quit()
 
-	if is_dead(): return
+	if is_dead() or disable_input: return
 
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
@@ -134,6 +135,7 @@ func _rotate_camera(sens_mod: float = 1.0) -> void:
 	camera.rotation.x = clamp(camera.rotation.x - look_dir.y * camera_sens * sens_mod, -1.5, 1.5)
 
 func _walk(delta: float) -> Vector3:
+	if disable_input: return Vector3.ZERO
 	move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
 	var _forward: Vector3 = camera.global_transform.basis * Vector3(move_dir.x, 0, move_dir.y)
 	var walk_dir: Vector3 = Vector3(_forward.x, 0, _forward.z).normalized()

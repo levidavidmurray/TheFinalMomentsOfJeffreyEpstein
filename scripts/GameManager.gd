@@ -12,6 +12,16 @@ func go_to_hell():
 	player.activate_hell_mode()
 	music_player().stop()
 	print("Go to hell")
+
+func activate_hitler():
+	player.disable_input = true
+	player.release_mouse()
+	player.get_node("CanvasLayer").visible = false
+	var vn_scene = load("res://scenes/VisualNovel.tscn")
+	add_child(vn_scene.instantiate())
+	var music = music_player()
+	music.stream = load("res://music/Hitler.ogg")
+	music.play()
 	
 func music_hell():
 	var music = music_player()
