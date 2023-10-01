@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var hitler_delay = 2.5
+@export var vn_hitler: PackedScene
 
 var enemies
 var enemies_remaining = 0
@@ -17,4 +18,6 @@ func _on_enemy_death():
 	enemies_remaining -= 1
 	if enemies_remaining == 0:
 		await get_tree().create_timer(hitler_delay).timeout
-		GameManager.activate_hitler()
+		var vn = vn_hitler.instantiate()
+		add_child(vn)
+		GameManager.play_music("res://music/Hitler.ogg")

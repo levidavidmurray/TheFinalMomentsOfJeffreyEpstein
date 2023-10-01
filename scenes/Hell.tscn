@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dghkp85x4rokx"]
+[gd_scene load_steps=10 format=3 uid="uid://dghkp85x4rokx"]
 
 [ext_resource type="Material" uid="uid://do81qbv5o3b28" path="res://materials/mat_Blood.tres" id="1_5og1w"]
 [ext_resource type="Script" path="res://scripts/Hell.gd" id="1_m1roq"]
+[ext_resource type="PackedScene" uid="uid://3dfsho5gpqt4" path="res://scenes/VisualNovel_Hitler.tscn" id="2_dj44v"]
 [ext_resource type="PackedScene" uid="uid://dc8ul4wbvo0vs" path="res://scenes/Enemy.tscn" id="2_koj0b"]
 [ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/hell_env.tres" id="3_f3ffy"]
 
@@ -20,6 +21,7 @@ material = SubResource("StandardMaterial3D_2tvka")
 
 [node name="Hell" type="Node3D"]
 script = ExtResource("1_m1roq")
+vn_hitler = ExtResource("2_dj44v")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -27,7 +29,7 @@ script = ExtResource("1_m1roq")
 shape = SubResource("ConcavePolygonShape3D_i0avu")
 
 [node name="Blood" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200001, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636518, 0.278685, -1.15511)
 mesh = SubResource("PlaneMesh_llbcy")
 
 [node name="Rock" type="MeshInstance3D" parent="."]

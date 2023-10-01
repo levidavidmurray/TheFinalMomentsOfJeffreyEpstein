@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_10"
+type="Resource"
+uid="uid://beo4s8v3s43as"
+path="res://.godot/imported/hillary.dialogue-eb7cf6ade04f6b428f8fe6ac29217c74.tres"
+
+[deps]
+
+source_file="res://dialogue/hillary.dialogue"
+dest_files=["res://.godot/imported/hillary.dialogue-eb7cf6ade04f6b428f8fe6ac29217c74.tres"]
+
+[params]
+
+defaults=true

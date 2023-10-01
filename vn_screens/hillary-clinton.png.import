@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjtmn8te8g00o"
-path.s3tc="res://.godot/imported/femme-hitler.png-3746e0c1799fd6493ac36947be725df9.s3tc.ctex"
+uid="uid://cc8kj5o8hkj6k"
+path.s3tc="res://.godot/imported/hillary-clinton.png-04738979b2b4c541ef70e064fd866e56.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://vn_screens/femme-hitler.png"
-dest_files=["res://.godot/imported/femme-hitler.png-3746e0c1799fd6493ac36947be725df9.s3tc.ctex"]
+source_file="res://vn_screens/hillary-clinton.png"
+dest_files=["res://.godot/imported/hillary-clinton.png-04738979b2b4c541ef70e064fd866e56.s3tc.ctex"]
 
 [params]
 

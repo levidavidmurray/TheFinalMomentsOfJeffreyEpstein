@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bb2xr3x6yrncg" path="res://scenes/Player.tscn" id="1_1o0h1"]
 [ext_resource type="PackedScene" uid="uid://dghkp85x4rokx" path="res://scenes/Hell.tscn" id="3_6hm6o"]
-[ext_resource type="PackedScene" uid="uid://chu230jovwvd4" path="res://scenes/Cell.tscn" id="3_k83dm"]
 [ext_resource type="AudioStream" uid="uid://djvldro43052h" path="res://music/Cell.ogg" id="4_1o337"]
+[ext_resource type="PackedScene" uid="uid://dsjd3gbnh40dr" path="res://scenes/Cell2.tscn" id="5_qe5hb"]
 
 [node name="Main" type="Node3D"]
 
@@ -12,9 +12,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206698, 0)
 acceleration = 50.0
 
-[node name="Cell" parent="." instance=ExtResource("3_k83dm")]
-unique_name_in_owner = true
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="Cell" parent="." instance=ExtResource("5_qe5hb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0686291, 0.111375, 0.0162228)
 
 [node name="Hell" parent="." instance=ExtResource("3_6hm6o")]
 unique_name_in_owner = true

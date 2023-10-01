@@ -1,0 +1,150 @@
+[gd_scene load_steps=21 format=3 uid="uid://dsjd3gbnh40dr"]
+
+[ext_resource type="PackedScene" uid="uid://btap0vy0bacm2" path="res://models/EpsteinCell_2.glb" id="1_2w5ph"]
+[ext_resource type="Material" uid="uid://ctkg6m7r3ic3v" path="res://materials/mat_Glass.tres" id="2_ec4q2"]
+[ext_resource type="Script" path="res://scripts/Cell.gd" id="2_fvc4v"]
+[ext_resource type="Material" uid="uid://cdigk0070t2lm" path="res://materials/mat_Cell_Floor.tres" id="2_gawot"]
+[ext_resource type="Material" uid="uid://cap6borcmu54o" path="res://materials/mat_Cell.tres" id="2_vjhjb"]
+[ext_resource type="Material" uid="uid://dkgo3p7m7b45t" path="res://materials/mat_Cell_Baseboard.tres" id="3_7j636"]
+[ext_resource type="PackedScene" uid="uid://slk3y0cpx58g" path="res://scenes/VisualNovel_Hillary.tscn" id="3_joc7s"]
+[ext_resource type="Material" uid="uid://dgk8wa3isyon8" path="res://materials/mat_Bed_Frame.tres" id="5_au6pl"]
+[ext_resource type="Material" uid="uid://lgofrkekjhb6" path="res://materials/mat_LightFixture_Metal.tres" id="5_m7gps"]
+[ext_resource type="Material" uid="uid://bsui8b3oxlfu5" path="res://materials/mat_Mattress.tres" id="6_hxmt2"]
+[ext_resource type="Material" uid="uid://bjjrtu2l3dnoi" path="res://materials/mat_LightFixture_Light.tres" id="6_j225a"]
+[ext_resource type="Environment" uid="uid://yioxlk56qe8k" path="res://scenes/cell_env.tres" id="7_eqdba"]
+[ext_resource type="Material" uid="uid://bggfkyj3dnw3y" path="res://materials/mat_Blanket.tres" id="7_pp4p3"]
+[ext_resource type="Material" uid="uid://csjeqjyos32b8" path="res://materials/mat_Cell_Door.tres" id="8_0g8sp"]
+[ext_resource type="Material" uid="uid://c6cib846pj4d0" path="res://materials/mat_Cell_DoorTrim.tres" id="10_e4ot3"]
+[ext_resource type="Material" path="res://materials/mat_sink.tres" id="13_su8vw"]
+[ext_resource type="Script" path="res://scripts/Interactable.gd" id="15_spjln"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ccp1j"]
+size = Vector3(0.0617376, 0.21564, 0.127352)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u58wb"]
+size = Vector3(1, 0.005, 0.685)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r0oaw"]
+points = PackedVector3Array(-0.5, -0.0025, -0.3425, -0.5, 0.0025, -0.3425, 0.5, -0.0025, -0.3425, -0.5, -0.0025, 0.3425, -0.5, 0.0025, 0.3425, 0.5, 0.0025, -0.3425, 0.5, -0.0025, 0.3425, 0.5, 0.0025, 0.3425)
+
+[node name="Cell2" instance=ExtResource("1_2w5ph")]
+script = ExtResource("2_fvc4v")
+vn_hillary = ExtResource("3_joc7s")
+
+[node name="Cell" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_vjhjb")
+surface_material_override/1 = ExtResource("2_gawot")
+
+[node name="baseboard" parent="Cell" index="0"]
+material_override = ExtResource("3_7j636")
+surface_material_override/0 = ExtResource("3_7j636")
+
+[node name="Bunk" parent="Cell" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274891, 0.513542, -2.54518)
+surface_material_override/0 = ExtResource("5_au6pl")
+
+[node name="Frame" parent="Cell/Bunk" index="0"]
+surface_material_override/0 = ExtResource("5_au6pl")
+
+[node name="LadderFrame" parent="Cell/Bunk" index="1"]
+material_override = ExtResource("5_au6pl")
+surface_material_override/0 = ExtResource("3_7j636")
+
+[node name="LadderRungs" parent="Cell/Bunk/LadderFrame" index="0"]
+material_override = ExtResource("5_au6pl")
+surface_material_override/0 = ExtResource("3_7j636")
+
+[node name="Mattress" parent="Cell/Bunk" index="2"]
+material_override = ExtResource("6_hxmt2")
+
+[node name="Blanket" parent="Cell/Bunk/Mattress" index="0"]
+material_override = ExtResource("7_pp4p3")
+
+[node name="TopBunk" parent="Cell/Bunk" index="3"]
+material_override = ExtResource("5_au6pl")
+surface_material_override/0 = ExtResource("3_7j636")
+
+[node name="Door" parent="Cell" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319687, -0.17311, 2.14862)
+surface_material_override/0 = ExtResource("8_0g8sp")
+surface_material_override/1 = ExtResource("2_ec4q2")
+surface_material_override/2 = ExtResource("10_e4ot3")
+
+[node name="FloorMattress" parent="Cell" index="3"]
+material_override = ExtResource("6_hxmt2")
+
+[node name="LightFixture" parent="Cell" index="4"]
+material_override = ExtResource("5_m7gps")
+
+[node name="Light" parent="Cell/LightFixture" index="0"]
+material_override = ExtResource("6_j225a")
+
+[node name="Noose" parent="Cell" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.314766, 1.46736, -1.95135)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cell/Noose" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.051412, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cell/Noose/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106647, -0.0105135, 0)
+shape = SubResource("BoxShape3D_ccp1j")
+
+[node name="Interactable" type="Node" parent="Cell/Noose/StaticBody3D" index="1"]
+script = ExtResource("15_spjln")
+text = "Press F to neck yourself"
+
+[node name="Toiletsink" parent="Cell" index="7"]
+surface_material_override/0 = ExtResource("13_su8vw")
+
+[node name="ToiletBowl" parent="Cell/Toiletsink" index="1"]
+surface_material_override/0 = ExtResource("13_su8vw")
+
+[node name="Window" parent="Cell" index="8"]
+material_override = ExtResource("2_vjhjb")
+
+[node name="Glass" parent="Cell/Window" index="0"]
+material_override = ExtResource("2_ec4q2")
+
+[node name="h-bars" parent="Cell/Window" index="1"]
+material_override = ExtResource("2_vjhjb")
+surface_material_override/0 = ExtResource("3_7j636")
+
+[node name="v-bars" parent="Cell/Window" index="2"]
+material_override = ExtResource("2_vjhjb")
+surface_material_override/0 = ExtResource("3_7j636")
+
+[node name="Letter" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.5559, 0.783525, -0.287395)
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Letter" index="0"]
+transform = Transform3D(0.895043, 0, 0.445979, 0, 1, 0, -0.445979, 0, 0.895043, 0, 0, 0)
+mesh = SubResource("BoxMesh_u58wb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Letter" index="1"]
+transform = Transform3D(0.895043, 0, 0.445979, 0, 1, 0, -0.445979, 0, 0.895043, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_r0oaw")
+
+[node name="Interactable" type="Node" parent="Letter" index="2"]
+script = ExtResource("15_spjln")
+text = "Press F to read letter"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
+transform = Transform3D(0.994053, 0.0262401, 0.105691, -0.000509334, -0.969405, 0.245467, 0.108898, -0.244061, -0.963626, 0, 0, 0)
+visible = false
+light_angular_distance = 0.25
+shadow_enabled = true
+shadow_transmittance_bias = 4.283
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3"]
+environment = ExtResource("7_eqdba")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.605745, 1.9529, -0.388878)
+light_energy = 0.5
+light_specular = 0.413
+omni_range = 4.169
+
+[connection signal="interacted" from="Cell/Noose/StaticBody3D/Interactable" to="." method="_on_noose_interacted" flags=18]
+[connection signal="interacted" from="Letter/Interactable" to="." method="_on_letter_interacted" flags=18]

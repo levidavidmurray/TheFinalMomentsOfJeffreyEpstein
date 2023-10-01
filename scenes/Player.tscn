@@ -100,6 +100,7 @@ shape = SubResource("CapsuleShape3D_4kj3u")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31123, 0)
+current = true
 script = ExtResource("2_uidk2")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera"]

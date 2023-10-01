@@ -168,11 +168,11 @@ func _handle_footstep():
 		return
 
 	
+	footstep_index = (footstep_index + 1) % sfx_footsteps.size()
 	last_step_time = get_time()
 	sfx_footstep.stream = sfx_footsteps[footstep_index]
 	sfx_footstep.pitch_scale = randf_range(0.75, 1)
 	sfx_footstep.play()
-	footstep_index = (footstep_index + 1) % sfx_footsteps.size()
 
 func get_time() -> float:
 	return Time.get_ticks_msec() / 1000.0

@@ -87,7 +87,6 @@ func _on_health_component_death():
 	col.disabled = true
 	sfx.finished.connect(func(): queue_free())
 	death_particles.emitting = true
-	get_tree().root.add_child(death_particles)
 	death.emit()
 	# animator.play("Death")
 

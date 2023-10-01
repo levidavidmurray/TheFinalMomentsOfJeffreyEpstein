@@ -1,9 +1,15 @@
 extends Node3D
 
+@export var vn_hillary: PackedScene
+
 @onready var world_env: WorldEnvironment = $WorldEnvironment
 
 func _on_noose_interacted():
 	go_to_hell()
+
+func _on_letter_interacted():
+	var vn = vn_hillary.instantiate()
+	add_child(vn)
 
 func go_to_hell():
 	if world_env:
