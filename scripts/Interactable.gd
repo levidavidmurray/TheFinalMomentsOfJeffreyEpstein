@@ -1,4 +1,4 @@
-class_name Interactable extends StaticBody3D
+class_name Interactable extends Node
 
 signal interacted
 

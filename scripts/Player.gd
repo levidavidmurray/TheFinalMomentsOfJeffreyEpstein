@@ -3,19 +3,24 @@ class_name Player extends CharacterBody3D
 signal death
 
 @export_category("Player")
-@export_range(1, 35, 1) var speed: float = 10 # m/s
 @export_range(10, 400, 1) var acceleration: float = 100 # m/s^2
+@export var speed_cell = 4
+@export var speed_hell = 7
 
 @export_range(0.1, 3.0, 0.1) var jump_height: float = 1 # m
 @export_range(0.1, 3.0, 0.1, "or_greater") var camera_sens: float = 1
 @export var take_damage_cd := 1.5
 @export var footstep_sfx_interval := 0.5
-@export var sfx_footsteps: Array[AudioStream] = []
+@export var sfx_footsteps_cell: Array[AudioStream] = []
+@export var sfx_footsteps_hell: Array[AudioStream] = []
 
 @onready var camera: PlayerCamera = $Camera
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var gun: Gun = $Camera/Gun
 @onready var sfx_footstep: AudioStreamPlayer3D = $SFX_Footstep
+@onready var sfx_footsteps: Array[AudioStream] = sfx_footsteps_cell
+@onready var sfx_hell_impact: AudioStreamPlayer3D = $SFX_HellImpact
+@onready var speed = speed_cell
 @onready var interact_ray: RayCast3D = $Camera/InteractRay
 @onready var interact_label: Label = $CanvasLayer/CenterContainer/InteractLabel
 
@@ -33,8 +38,13 @@ var jump_vel: Vector3 # Jumping velocity
 
 var last_step_time := 0.0
 var footstep_index = 0
+var is_hell_mode = false
+
+var was_grounded_last_frame = false
+var on_did_become_grounded: Callable
 
 func _ready() -> void:
+	GameManager.player_ready(self)
 	capture_mouse()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -57,8 +67,14 @@ func _physics_process(delta: float) -> void:
 	
 	handle_interactable()
 
+	if is_on_floor() and not was_grounded_last_frame:
+		if on_did_become_grounded:
+			on_did_become_grounded.call()
+
 	if sfx_footstep:
 		_handle_footstep()
+
+	was_grounded_last_frame = is_on_floor()
 
 func take_damage(damage: float) -> void:
 	print("Player took damage: ", damage)
@@ -69,23 +85,39 @@ func is_dead() -> bool:
 	return health_component.is_dead()
 
 func handle_shoot() -> void:
+	if not is_hell_mode: return
 	if gun.can_shoot():
 		gun.shoot()
-
-func _on_health_component_death():
-	print("player died")
-	death.emit()
 
 func handle_interactable():
 	if interact_ray.is_colliding():
 		var body = interact_ray.get_collider()
-		if body is Interactable:
-			if Input.is_action_just_pressed("interact"):
-				body.interact()
-			interact_label.visible = true
-			interact_label.text = body.text
-			return
-	interact_label.visible = false		
+		var interactable = body.get_node("Interactable") as Interactable
+		interact_label.visible = true
+		interact_label.text = interactable.text
+		if Input.is_action_just_pressed("interact"):
+			interactable.interact()
+	else:
+		interact_label.visible = false		
+	
+func activate_hell_mode():
+	is_hell_mode = true
+	$Camera/DirectionalLight3D.visible = true
+	sfx_footsteps = sfx_footsteps_hell
+	on_did_become_grounded = func():
+		print("hell impact")
+		GameManager.music_hell()
+		sfx_hell_impact.play()
+		speed = speed_hell
+		gun.visible = true
+		on_did_become_grounded = func(): pass
+
+# Signal Callbacks
+
+func _on_health_component_death():
+	print("player died")
+	$CanvasLayer/BlackRect.visible = true
+	death.emit()
 
 # Input & Physics
 

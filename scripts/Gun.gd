@@ -12,7 +12,7 @@ class_name Gun extends Node3D
 var bullet_instance: Bullet
 
 func can_shoot() -> bool:
-	return !anim.is_playing()
+	return visible && !anim.is_playing()
 
 func shoot():
 	anim.play("Shoot")

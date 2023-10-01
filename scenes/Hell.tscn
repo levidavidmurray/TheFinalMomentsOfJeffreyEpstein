@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkn3cya3f74ar"]
+[gd_scene load_steps=8 format=3 uid="uid://dghkp85x4rokx"]
 
 [ext_resource type="Material" uid="uid://do81qbv5o3b28" path="res://materials/mat_Blood.tres" id="1_5og1w"]
 [ext_resource type="PackedScene" uid="uid://dc8ul4wbvo0vs" path="res://scenes/Enemy.tscn" id="2_koj0b"]
-[ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/default_env.tres" id="3_2rgav"]
+[ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/hell_env.tres" id="3_f3ffy"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i0avu"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
@@ -91,5 +91,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3938, 0, -43.1568)
 [node name="Enemy5" parent="." instance=ExtResource("2_koj0b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2464, 0, 0.845699)
 
+[node name="Enemy6" parent="." instance=ExtResource("2_koj0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4815, 0, 6.05098)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_2rgav")
+environment = ExtResource("3_f3ffy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.968627, 0.352941, 0.431373, 1)
+light_angular_distance = 0.25
+shadow_enabled = true

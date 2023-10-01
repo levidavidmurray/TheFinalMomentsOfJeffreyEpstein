@@ -98,7 +98,7 @@ roughness = 0.3
 material = SubResource("StandardMaterial3D_ykgd3")
 
 [node name="Enemy" type="CharacterBody3D"]
-collision_layer = 5
+collision_layer = 3
 script = ExtResource("1_np2c2")
 attack_damage = 4
 attack_interval = 1.15

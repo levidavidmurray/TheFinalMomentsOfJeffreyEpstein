@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4uaxlr1unus"]
+[gd_scene load_steps=4 format=3 uid="uid://dqeo6ocbn086n"]
 
 [ext_resource type="Script" path="res://scripts/Interactable.gd" id="2_uhd1k"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_d8rtv"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c3snc"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="BoxMesh" id="BoxMesh_d8rtv"]
+
 [node name="Noose" type="StaticBody3D"]
-script = ExtResource("2_uhd1k")
-text = "Press F to neck yourself"
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_c3snc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_d8rtv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_c3snc")
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_uhd1k")
+text = "Press F to neck yourself"

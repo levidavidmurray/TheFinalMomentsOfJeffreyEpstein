@@ -1,18 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cng40bfa57ohw"]
+[gd_scene load_steps=8 format=3 uid="uid://chu230jovwvd4"]
 
 [ext_resource type="PackedScene" uid="uid://dtfwclh23j353" path="res://models/epsteincell.glb" id="1_0fn2y"]
-[ext_resource type="Material" uid="uid://c3d3wul4bplsx" path="res://materials/mat_bed.tres" id="2_g50k1"]
-[ext_resource type="Material" uid="uid://dub3c72mbnfw5" path="res://materials/mat_sink.tres" id="3_itaid"]
-[ext_resource type="PackedScene" uid="uid://c4uaxlr1unus" path="res://scenes/Noose.tscn" id="4_u63ga"]
+[ext_resource type="Material" path="res://materials/mat_bed.tres" id="2_g50k1"]
+[ext_resource type="Script" path="res://scripts/Cell.gd" id="2_pe78t"]
+[ext_resource type="Material" path="res://materials/mat_sink.tres" id="3_itaid"]
+[ext_resource type="Material" uid="uid://cap6borcmu54o" path="res://materials/mat_Cell.tres" id="3_usic3"]
+[ext_resource type="PackedScene" uid="uid://dqeo6ocbn086n" path="res://scenes/Noose.tscn" id="4_u63ga"]
+[ext_resource type="Environment" uid="uid://yioxlk56qe8k" path="res://scenes/cell_env.tres" id="5_o7ld1"]
 
-[node name="epsteincell" instance=ExtResource("1_0fn2y")]
+[node name="Cell" instance=ExtResource("1_0fn2y")]
+script = ExtResource("2_pe78t")
+
+[node name="Cell" parent="." index="0"]
+material_override = ExtResource("3_usic3")
 
 [node name="Bed" parent="Cell" index="0"]
 transform = Transform3D(0.0181944, 0, 0, 0, 5.78563, 0, 0, 0, 0.0102421, 0.0422531, -10.0097, -0.615774)
-material_override = ExtResource("2_g50k1")
+surface_material_override/0 = ExtResource("2_g50k1")
 
 [node name="Ladder" parent="Cell" index="2"]
-material_override = ExtResource("2_g50k1")
+surface_material_override/0 = ExtResource("2_g50k1")
 
 [node name="Table" parent="Cell" index="3"]
 transform = Transform3D(0.00663359, 0, 0, 0, -0.856384, 0, 0, 0, 0.0037342, -0.731802, -12.2115, 0.266313)
@@ -27,5 +34,18 @@ material_override = ExtResource("3_itaid")
 [node name="CollisionShape3D" parent="Cell/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Noose" parent="." index="1" instance=ExtResource("4_u63ga")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.890406, 17.5806)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(0.999073, 0.0100228, 0.0418608, 0, -0.972512, 0.232851, 0.043044, -0.232635, -0.971611, 0, 0, 0)
+light_angular_distance = 0.25
+shadow_enabled = true
+shadow_transmittance_bias = 4.283
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2"]
+environment = ExtResource("5_o7ld1")
+
+[node name="Noose" parent="." index="3" instance=ExtResource("4_u63ga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12458, 9.23965, -7.47236)
+
+[connection signal="interacted" from="Noose/Interactable" to="." method="_on_noose_interacted"]
+
+[editable path="Noose"]

@@ -1,18 +1,28 @@
-[gd_scene load_steps=23 format=3 uid="uid://bb2xr3x6yrncg"]
+[gd_scene load_steps=33 format=3 uid="uid://bb2xr3x6yrncg"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_5goeo"]
 [ext_resource type="Script" path="res://scripts/Gun.gd" id="2_7jq0l"]
+[ext_resource type="AudioStream" uid="uid://p68ftltdmpyw" path="res://sfx/footstep_0.ogg" id="2_jrqp7"]
 [ext_resource type="AudioStream" uid="uid://cmpnyi3m1hv6e" path="res://sfx/footstep_blood_0.ogg" id="2_q5vd4"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="2_uidk2"]
 [ext_resource type="AudioStream" uid="uid://cs06853sfgckf" path="res://sfx/footstep_blood_1.ogg" id="3_2tkrd"]
+[ext_resource type="AudioStream" uid="uid://bl8rkgn8ym55k" path="res://sfx/footstep_1.ogg" id="3_3orop"]
 [ext_resource type="AudioStream" uid="uid://cugtwso78ymlj" path="res://sfx/Pistol Shot A.wav" id="3_t4d60"]
 [ext_resource type="AudioStream" uid="uid://gpxsrxkvlhjv" path="res://sfx/Pistol Shot B.wav" id="4_bsa7w"]
 [ext_resource type="AudioStream" uid="uid://ctqovct3j608s" path="res://sfx/footstep_blood_2.ogg" id="4_dhrq3"]
+[ext_resource type="AudioStream" uid="uid://b2k45tl2f8f0f" path="res://sfx/footstep_2.ogg" id="4_hcgtj"]
 [ext_resource type="AudioStream" uid="uid://xw3v6eyxuuma" path="res://sfx/footstep_blood_3.ogg" id="5_k8k4n"]
 [ext_resource type="AudioStream" uid="uid://bw5kdxcjiesc5" path="res://sfx/Pistol Shot C.wav" id="5_o3jd5"]
+[ext_resource type="AudioStream" uid="uid://c0kv8rteas5bi" path="res://sfx/footstep_3.ogg" id="5_qt3sb"]
+[ext_resource type="AudioStream" uid="uid://6rd6ee128qbj" path="res://sfx/footstep_4.ogg" id="6_47dyj"]
 [ext_resource type="AudioStream" uid="uid://5wytrqj7ybso" path="res://sfx/footstep_blood_4.ogg" id="6_d80hy"]
+[ext_resource type="AudioStream" uid="uid://bxnlcxxovs8et" path="res://sfx/footstep_5.ogg" id="7_kxwfc"]
 [ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="7_luamq"]
+[ext_resource type="AudioStream" uid="uid://dcd81tujpa5bw" path="res://sfx/footstep_6.ogg" id="8_qr2a4"]
+[ext_resource type="AudioStream" uid="uid://b11ymihhrm0qv" path="res://sfx/footstep_7.ogg" id="9_njeom"]
+[ext_resource type="AudioStream" uid="uid://miu2d4w2ifg7" path="res://sfx/footstep_8.ogg" id="10_2c3ac"]
 [ext_resource type="Script" path="res://scripts/ScreenShake.gd" id="13_amhg6"]
+[ext_resource type="AudioStream" uid="uid://bpcbbck0hdcne" path="res://sfx/Impact Hell Bucket.wav" id="14_0tcxn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kj3u"]
 radius = 0.45
@@ -76,9 +86,10 @@ default_font = SubResource("SystemFont_udxqb")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_5goeo")
-speed = 7.0
 acceleration = 150.0
-sfx_footsteps = Array[AudioStream]([ExtResource("2_q5vd4"), ExtResource("3_2tkrd"), ExtResource("4_dhrq3"), ExtResource("5_k8k4n"), ExtResource("6_d80hy")])
+speed_cell = 2
+sfx_footsteps_cell = Array[AudioStream]([ExtResource("2_jrqp7"), ExtResource("3_3orop"), ExtResource("4_hcgtj"), ExtResource("5_qt3sb"), ExtResource("6_47dyj"), ExtResource("7_kxwfc"), ExtResource("8_qr2a4"), ExtResource("9_njeom"), ExtResource("10_2c3ac")])
+sfx_footsteps_hell = Array[AudioStream]([ExtResource("2_q5vd4"), ExtResource("3_2tkrd"), ExtResource("4_dhrq3"), ExtResource("5_k8k4n"), ExtResource("6_d80hy")])
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("7_luamq")
@@ -92,10 +103,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31123, 0)
 script = ExtResource("2_uidk2")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera"]
-target_position = Vector3(0, 0, -5)
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
 
 [node name="Gun" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145, -0.189, -0.218)
+visible = false
 script = ExtResource("2_7jq0l")
 sfx_gunshot = Array[AudioStream]([ExtResource("3_t4d60"), ExtResource("4_bsa7w"), ExtResource("5_o3jd5")])
 
@@ -121,8 +134,9 @@ bus = &"SFX"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0610828, -0.200525)
 target_position = Vector3(0, 0, -0.5)
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Camera"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 0.981975, 0.18901, 0, -0.18901, 0.981975, 0, 0, 0)
+visible = false
 light_color = Color(0.968627, 0.352941, 0.431373, 1)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
@@ -175,9 +189,26 @@ visible = false
 layout_mode = 2
 text = "Interact"
 
+[node name="BlackRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+z_index = 1
+offset_left = -7.0
+offset_top = -9.0
+offset_right = 1158.0
+offset_bottom = 653.0
+color = Color(0, 0, 0, 1)
+
 [node name="SFX_Footstep" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16573, 0)
 volume_db = -22.0
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 3000.0
+
+[node name="SFX_HellImpact" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16573, 0)
+stream = ExtResource("14_0tcxn")
+volume_db = -8.0
+bus = &"SFX"
 attenuation_filter_cutoff_hz = 3000.0
 
 [connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
