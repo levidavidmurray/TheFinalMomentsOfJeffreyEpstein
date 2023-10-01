@@ -146,9 +146,10 @@ environment = ExtResource("7_eqdba")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.605745, 1.9529, -0.388878)
-light_energy = 0.5
-light_specular = 0.413
-omni_range = 4.169
+light_energy = 0.55
+light_specular = 1.375
+shadow_enabled = true
+shadow_blur = 1.16
 
 [connection signal="interacted" from="Cell/Noose/StaticBody3D/Interactable" to="." method="_on_noose_interacted" flags=18]
 [connection signal="interacted" from="Letter/Interactable" to="." method="_on_letter_interacted" flags=18]
