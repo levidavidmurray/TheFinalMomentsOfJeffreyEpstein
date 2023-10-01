@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4uaxlr1unus"]
+
+[ext_resource type="Script" path="res://scripts/Noose.gd" id="1_gcq50"]
+[ext_resource type="Script" path="res://scripts/Interactable.gd" id="2_uhd1k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d8rtv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c3snc"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Noose" type="StaticBody3D"]
+script = ExtResource("1_gcq50")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_d8rtv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_c3snc")
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_uhd1k")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

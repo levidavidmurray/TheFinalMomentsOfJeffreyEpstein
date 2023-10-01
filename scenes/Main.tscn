@@ -1,28 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvalyhbmajro2"]
+[gd_scene load_steps=4 format=3 uid="uid://cvalyhbmajro2"]
 
 [ext_resource type="PackedScene" uid="uid://bb2xr3x6yrncg" path="res://scenes/Player.tscn" id="1_1o0h1"]
-[ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/default_env.tres" id="1_3jqn5"]
-[ext_resource type="Material" uid="uid://do81qbv5o3b28" path="res://materials/mat_Blood.tres" id="2_is2d4"]
-[ext_resource type="PackedScene" uid="uid://dc8ul4wbvo0vs" path="res://scenes/Enemy.tscn" id="2_uiqrc"]
+[ext_resource type="PackedScene" uid="uid://cng40bfa57ohw" path="res://scenes/Cell.tscn" id="3_k83dm"]
 [ext_resource type="AudioStream" uid="uid://cmbdj15qdixwv" path="res://music/Metal Doomed Main.ogg" id="4_10rpk"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i0avu"]
-data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_llbcy"]
-material = ExtResource("2_is2d4")
-size = Vector2(100, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tvka"]
-albedo_color = Color(0.27451, 0.054902, 0.0156863, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_40a16"]
-material = SubResource("StandardMaterial3D_2tvka")
-
 [node name="Main" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_3jqn5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -30,85 +12,15 @@ light_color = Color(0.968627, 0.352941, 0.431373, 1)
 light_angular_distance = 0.25
 shadow_enabled = true
 
-[node name="World" type="Node3D" parent="."]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World"]
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="World/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_i0avu")
-
-[node name="Blood" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200001, 0)
-mesh = SubResource("PlaneMesh_llbcy")
-
-[node name="Rock" type="MeshInstance3D" parent="World"]
-transform = Transform3D(7.9822, 3.87482, -28.0286, 12.3142, 39.8611, 4.85331, 31.7535, -16.4325, 5.16369, 37.5107, -2.25333, -28.0988)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock2" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-9.55426, 11.801, -26.6712, 12.3142, 39.8611, 4.85332, 31.3164, -12.0739, -10.0455, 40.2551, -8.39502, 3.01545)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock8" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-0.928411, 0.586625, -3.48605, 1.1966, 1.98149, 0.634351, 3.04309, -0.600191, -1.31299, 8.31106, -0.420985, -13.7378)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock11" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1.05296, -1.90037, -1.33143, 3.21302, 0.529325, 0.810529, -0.349277, -0.859681, 3.44227, -14.4895, -0.420986, -24.1201)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock12" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1.93458, -2.01075, 1.73836, 2.63947, 1.51976, -0.907872, -0.155172, 0.782543, 6.2299, -11.2695, -1.33823, -1.09047)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock3" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-41.0384, -14.9324, -3.3542, -14.0935, 39.9598, -6.69849, 7.2752, -6.82151, -31.8968, 37.8011, 0.905927, 25.4965)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock4" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-46.2176, -8.12911, -4.45527, -4.68938, 63.1955, -5.35518, 7.78893, -10.1888, -29.6606, -2.1878, -8.39502, 27.5334)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock5" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-35.9405, 24.1319, -6.29656, 15.3251, 61.0839, -2.46178, 6.55096, -10.5025, -28.7858, -49.2405, -8.39502, 27.5334)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock6" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-14.0914, 24.142, 26.1902, -10.9535, 76.3844, -10.4801, -42.1737, -27.9053, -6.02891, -38.7012, -8.39502, 4.49809)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock7" type="MeshInstance3D" parent="World"]
-transform = Transform3D(13.0304, 11.9714, 24.8053, -15.3492, 78.3883, -1.25674, -42.5148, -24.6315, 8.05634, -34.892, -8.39502, -27.437)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock10" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-1.03767, 61.3573, 21.3413, -27.0409, 41.5529, -4.6932, -10.5647, -112.383, 9.91631, -38.7372, -8.39502, -29.6634)
-mesh = SubResource("BoxMesh_40a16")
-
-[node name="Rock9" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-6.19168, -3.2133, 23.4377, -27.0409, 41.5529, -4.6932, -8.62279, -128.002, -2.11191, 34.3234, -8.3247, -28.4778)
-mesh = SubResource("BoxMesh_40a16")
-
 [node name="Player" parent="." instance=ExtResource("1_1o0h1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.41694, 0)
 speed = 10.0
 acceleration = 50.0
-
-[node name="Enemy" parent="." instance=ExtResource("2_uiqrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520911, 0, -13.3284)
-
-[node name="Enemy2" parent="." instance=ExtResource("2_uiqrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.80601, 0, -22.7405)
-
-[node name="Enemy3" parent="." instance=ExtResource("2_uiqrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19926, 0, -33.6361)
-
-[node name="Enemy4" parent="." instance=ExtResource("2_uiqrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3938, 0, -43.1568)
-
-[node name="Enemy5" parent="." instance=ExtResource("2_uiqrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2464, 0, 0.845699)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_10rpk")
 autoplay = true
 bus = &"Music"
+
+[node name="epsteincell" parent="." instance=ExtResource("3_k83dm")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.91894, 0)
