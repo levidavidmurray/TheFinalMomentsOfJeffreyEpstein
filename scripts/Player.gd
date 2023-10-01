@@ -16,6 +16,8 @@ signal death
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var gun: Gun = $Camera/Gun
 @onready var sfx_footstep: AudioStreamPlayer3D = $SFX_Footstep
+@onready var interact_ray: RayCast3D = $Camera/InteractRay
+@onready var interact_label: Label = $CanvasLayer/CenterContainer/InteractLabel
 
 var jumping: bool = false
 var mouse_captured: bool = false

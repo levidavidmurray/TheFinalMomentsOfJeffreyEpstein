@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4uaxlr1unus"]
+[gd_scene load_steps=5 format=3 uid="uid://dqeo6ocbn086n"]
 
 [ext_resource type="Script" path="res://scripts/Noose.gd" id="1_gcq50"]
 [ext_resource type="Script" path="res://scripts/Interactable.gd" id="2_uhd1k"]
