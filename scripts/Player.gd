@@ -54,6 +54,8 @@ func _physics_process(delta: float) -> void:
 	velocity = _walk(delta) + _gravity(delta) + _jump(delta)
 
 	move_and_slide()
+	
+	handle_interactable()
 
 	if sfx_footstep:
 		_handle_footstep()
@@ -73,6 +75,17 @@ func handle_shoot() -> void:
 func _on_health_component_death():
 	print("player died")
 	death.emit()
+
+func handle_interactable():
+	if interact_ray.is_colliding():
+		var body = interact_ray.get_collider()
+		if body is Interactable:
+			if Input.is_action_just_pressed("interact"):
+				body.interact()
+			interact_label.visible = true
+			interact_label.text = body.text
+			return
+	interact_label.visible = false		
 
 # Input & Physics
 

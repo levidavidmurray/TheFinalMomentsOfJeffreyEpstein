@@ -1,6 +1,8 @@
-class_name Interactable extends Node
+class_name Interactable extends StaticBody3D
 
 signal interacted
 
+@export var text = "interact"
+
 func interact():
-    interacted.emit()
+	interacted.emit()

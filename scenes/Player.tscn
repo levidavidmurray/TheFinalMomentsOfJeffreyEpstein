@@ -69,6 +69,7 @@ _data = {
 }
 
 [sub_resource type="SystemFont" id="SystemFont_udxqb"]
+subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_fqhhu"]
 default_font = SubResource("SystemFont_udxqb")
@@ -91,8 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31123, 0)
 script = ExtResource("2_uidk2")
 
 [node name="InteractRay" type="RayCast3D" parent="Camera"]
-target_position = Vector3(0, 0, -1.75)
-collision_mask = 4
+target_position = Vector3(0, 0, -5)
 
 [node name="Gun" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145, -0.189, -0.218)
@@ -157,7 +157,7 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0.513726)
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -171,6 +171,7 @@ grow_vertical = 2
 theme = SubResource("Theme_fqhhu")
 
 [node name="InteractLabel" type="Label" parent="CanvasLayer/CenterContainer"]
+visible = false
 layout_mode = 2
 text = "Interact"
 

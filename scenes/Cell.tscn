@@ -28,3 +28,4 @@ material_override = ExtResource("3_itaid")
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Noose" parent="." index="1" instance=ExtResource("4_u63ga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.890406, 17.5806)
