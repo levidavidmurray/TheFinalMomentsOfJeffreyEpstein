@@ -9,7 +9,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_1o0h1")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206698, 0)
+transform = Transform3D(-0.463296, 0, 0.886204, 0, 1, 0, -0.886204, 0, -0.463296, 0.564, 0.342, -0.885)
 acceleration = 50.0
 
 [node name="Cell" parent="." instance=ExtResource("5_qe5hb")]
@@ -23,3 +23,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07628, -100.326, 4.54395)
 stream = ExtResource("4_1o337")
 autoplay = true
 bus = &"Music"
+
+[editable path="Player"]

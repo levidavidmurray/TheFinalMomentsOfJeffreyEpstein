@@ -32,6 +32,7 @@ script = ExtResource("2_fvc4v")
 vn_hillary = ExtResource("3_joc7s")
 
 [node name="Cell" parent="." index="0"]
+gi_mode = 0
 surface_material_override/0 = ExtResource("2_vjhjb")
 surface_material_override/1 = ExtResource("2_gawot")
 
@@ -131,11 +132,14 @@ script = ExtResource("15_spjln")
 text = "Press F to read letter"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
-transform = Transform3D(0.994053, 0.0262401, 0.105691, -0.000509334, -0.969405, 0.245467, 0.108898, -0.244061, -0.963626, 0, 0, 0)
-visible = false
+transform = Transform3D(0.994053, 0.02624, 0.105691, -0.000509334, -0.969405, 0.245467, 0.108898, -0.244061, -0.963626, 0, 0, 0)
 light_angular_distance = 0.25
 shadow_enabled = true
 shadow_transmittance_bias = 4.283
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.078
+directional_shadow_split_3 = 0.808
+directional_shadow_blend_splits = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3"]
 environment = ExtResource("7_eqdba")
