@@ -25,6 +25,7 @@ func _on_enemy_death():
 		await get_tree().create_timer(hitler_delay).timeout
 		var vn = vn_hitler.instantiate()
 		add_child(vn)
+		vn.dialogue_ended.connect(_on_dialogue_ended)
 		GameManager.play_music("res://music/Hitler.ogg")
 	else:
 		_play_voiceline()
@@ -38,6 +39,10 @@ func _play_voiceline():
 	sfx_played_map[stream] = true
 	sfx_voiceline.stream = stream
 	sfx_voiceline.play()
+
+func _on_dialogue_ended():
+	GameManager.end_game()
+
 
 # func _get_enemy_closest_to_player() -> Enemy:
 # 	var closest_dist = 100000

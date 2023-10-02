@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvalyhbmajro2"]
+[gd_scene load_steps=6 format=3 uid="uid://cvalyhbmajro2"]
 
 [ext_resource type="PackedScene" uid="uid://bb2xr3x6yrncg" path="res://scenes/Player.tscn" id="1_1o0h1"]
 [ext_resource type="PackedScene" uid="uid://dghkp85x4rokx" path="res://scenes/Hell.tscn" id="3_6hm6o"]
 [ext_resource type="AudioStream" uid="uid://djvldro43052h" path="res://music/Cell.ogg" id="4_1o337"]
+[ext_resource type="Texture2D" uid="uid://btp2p28gnjfbu" path="res://vn_screens/epstein-end-screen.jpg" id="5_otf0w"]
 [ext_resource type="PackedScene" uid="uid://dsjd3gbnh40dr" path="res://scenes/Cell2.tscn" id="5_qe5hb"]
 
 [node name="Main" type="Node3D"]
@@ -64,5 +65,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07628, -100.326, 4.54395)
 stream = ExtResource("4_1o337")
 volume_db = -10.0
 bus = &"Music"
+
+[node name="EndGameLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="EndGameLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_otf0w")
+expand_mode = 2
 
 [editable path="Player"]

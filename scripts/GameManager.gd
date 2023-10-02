@@ -19,8 +19,6 @@ func fps_mode():
 	player.capture_mouse()
 	
 func go_to_hell():
-	
-	
 	player.activate_hell_mode()
 	music_player().stop()
 	print("Go to hell")
@@ -34,6 +32,12 @@ func music_hell():
 	var music = music_player()
 	music.stream = load("res://music/Hell.ogg")
 	music.play()
+
+func end_game():
+	get_node("/root/Main/EndGameLayer").visible = true
+	player.get_node("CanvasLayer").visible = false
+	player.disable_input = true
+	player.release_mouse()
 
 func _on_player_death():
 	music_player().stop()

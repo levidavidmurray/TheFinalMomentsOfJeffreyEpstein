@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal dialogue_ended
+
 @export var dialogue_resource: DialogueResource
 @export var background: Texture2D
 @export var intro_delay = 2.0
@@ -17,3 +19,4 @@ func _on_dialogue_ended(_resource):
 	await get_tree().create_timer(exit_delay).timeout
 	GameManager.fps_mode()
 	queue_free()
+	dialogue_ended.emit()
