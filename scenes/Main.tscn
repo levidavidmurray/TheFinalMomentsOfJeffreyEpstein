@@ -78,4 +78,21 @@ grow_vertical = 2
 texture = ExtResource("5_otf0w")
 expand_mode = 2
 
+[node name="ButtonRestart" type="Button" parent="EndGameLayer"]
+offset_left = 142.0
+offset_top = 496.0
+offset_right = 211.0
+offset_bottom = 527.0
+text = "Restart"
+
+[node name="ButtonQuit" type="Button" parent="EndGameLayer"]
+offset_left = 1012.0
+offset_top = 496.0
+offset_right = 1020.0
+offset_bottom = 504.0
+text = "Quit"
+
+[connection signal="button_up" from="EndGameLayer/ButtonRestart" to="Player" method="_on_button_restart_button_up"]
+[connection signal="button_up" from="EndGameLayer/ButtonQuit" to="Player" method="_on_button_quit_button_up"]
+
 [editable path="Player"]

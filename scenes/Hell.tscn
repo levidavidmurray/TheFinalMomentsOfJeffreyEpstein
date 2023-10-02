@@ -131,25 +131,25 @@ shadow_enabled = true
 [node name="SFX_Voiceline" type="AudioStreamPlayer" parent="."]
 volume_db = 5.0
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+[node name="WorldBoundary" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBoundary"]
 transform = Transform3D(44.1439, 0, 0, 0, 3.59, 0, 0, 0, 3.29148, 3.90507, 0, 9.70945)
 shape = SubResource("BoxShape3D_jcrpu")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WorldBoundary"]
 transform = Transform3D(14.5677, 0, -3.98055, 0, 3.59, 0, 126.816, 0, 0.457257, 23.6372, 0, -11.8788)
 shape = SubResource("BoxShape3D_jcrpu")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WorldBoundary"]
 transform = Transform3D(-127.573, 0, -0.139204, 0, 3.59, 0, 4.43489, 0, -4.00431, 15.3037, 0, -47.838)
 shape = SubResource("BoxShape3D_jcrpu")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="WorldBoundary"]
 transform = Transform3D(-42.6524, 0, -3.77644, 0, 3.59, 0, 120.313, 0, -1.33879, -17.4742, -0.272586, -32.4913)
 shape = SubResource("BoxShape3D_jcrpu")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="WorldBoundary"]
 transform = Transform3D(4.53654, 0, -5.00299, 0, 3.59, 0, 33.7793, 0, 0.671896, -22.5804, -0.272585, -2.40155)
 shape = SubResource("BoxShape3D_jcrpu")
 

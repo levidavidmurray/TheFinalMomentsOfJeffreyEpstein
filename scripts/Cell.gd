@@ -5,6 +5,7 @@ extends Node3D
 
 func _on_noose_interacted():
 	var player = GameManager.player
+	player.interact_label.visible = false
 	$CanvasLayer/Question.visible = true
 	player.disable_input = true
 	player.release_mouse()
