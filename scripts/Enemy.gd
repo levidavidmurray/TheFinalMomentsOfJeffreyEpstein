@@ -18,7 +18,7 @@ signal death
 @onready var sfx_2: AudioStreamPlayer3D = $SFX2
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var start_pos = global_position
-@onready var mesh = $MeshInstance3D
+@onready var mesh = $Wheelchair
 @onready var col = $CollisionShape3D
 @onready var death_particles: GPUParticles3D = $DeathParticles
 
@@ -39,6 +39,7 @@ func _physics_process(delta):
 func handle_aggro():
 	# move towards target
 	var dir = target.global_position - global_position
+	look_at(target.global_position, Vector3.UP)
 	if can_attack():
 		print("target in attack box: ", target_in_attack_box)
 		velocity = Vector3.ZERO

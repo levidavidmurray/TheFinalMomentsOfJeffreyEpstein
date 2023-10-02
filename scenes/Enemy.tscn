@@ -10,12 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://cwjdqo23fefqq" path="res://sfx/Iron Fist Punch A.wav" id="6_hrwv3"]
 [ext_resource type="AudioStream" uid="uid://dnr2o8q23r2a5" path="res://sfx/Iron Fist Punch B.wav" id="7_t8ii3"]
 [ext_resource type="AudioStream" uid="uid://cndywxftg2lqs" path="res://sfx/Iron Fist Punch C.wav" id="8_05pwh"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv5ll"]
-albedo_color = Color(0.701961, 0.054902, 0.0666667, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_63y77"]
-material = SubResource("StandardMaterial3D_mv5ll")
+[ext_resource type="PackedScene" uid="uid://c16t6lo002scj" path="res://models/wheelchair.glb" id="11_1v0qo"]
+[ext_resource type="Material" uid="uid://dop1j73hwymlt" path="res://materials/mat_Wheelchair_Seat.tres" id="11_68cru"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k5i5i"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
@@ -108,9 +104,23 @@ sfx_attacks = Array[AudioStream]([ExtResource("3_jj1q3"), ExtResource("4_djeut")
 sfx_attacks_2 = Array[AudioStream]([ExtResource("6_hrwv3"), ExtResource("7_t8ii3"), ExtResource("8_05pwh")])
 sfx_death = ExtResource("3_vqty6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_63y77")
+[node name="Wheelchair" parent="." instance=ExtResource("11_1v0qo")]
+transform = Transform3D(-1.505, 0, -1.31571e-07, 0, 1.505, 0, 1.31571e-07, 0, -1.505, 0, 0, 0.614006)
+
+[node name="Wheelchair" parent="Wheelchair" index="0"]
+surface_material_override/0 = ExtResource("11_68cru")
+
+[node name="Cube_007" parent="Wheelchair/Wheelchair" index="0"]
+material_override = ExtResource("11_68cru")
+
+[node name="Cube_008" parent="Wheelchair/Wheelchair" index="1"]
+material_override = ExtResource("11_68cru")
+
+[node name="Cylinder_006" parent="Wheelchair/Wheelchair" index="2"]
+material_override = ExtResource("11_68cru")
+
+[node name="Cylinder_007" parent="Wheelchair/Wheelchair" index="3"]
+material_override = ExtResource("11_68cru")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -155,3 +165,5 @@ draw_pass_1 = SubResource("SphereMesh_hydjo")
 [connection signal="body_exited" from="AttackBox" to="." method="_on_attack_box_body_exited"]
 [connection signal="body_entered" from="AggroBox" to="." method="_on_aggro_box_body_entered"]
 [connection signal="body_exited" from="AggroBox" to="." method="_on_aggro_box_body_exited"]
+
+[editable path="Wheelchair"]

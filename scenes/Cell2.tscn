@@ -116,7 +116,7 @@ material_override = ExtResource("2_vjhjb")
 surface_material_override/0 = ExtResource("3_7j636")
 
 [node name="Letter" type="StaticBody3D" parent="." index="1"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.5559, 0.783525, -0.287395)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.5559, 0.771336, -0.287395)
 collision_layer = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Letter" index="0"]
@@ -132,7 +132,7 @@ script = ExtResource("15_spjln")
 text = "Press F to read letter"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
-transform = Transform3D(0.994053, 0.02624, 0.105691, -0.000509334, -0.969405, 0.245467, 0.108898, -0.244061, -0.963626, 0, 0, 0)
+transform = Transform3D(0.994053, 0.02624, 0.105691, -0.000509334, -0.969405, 0.245467, 0.108898, -0.244061, -0.963626, -0.00104511, 0.00212169, 0.00430453)
 light_angular_distance = 0.25
 shadow_enabled = true
 shadow_transmittance_bias = 4.283
