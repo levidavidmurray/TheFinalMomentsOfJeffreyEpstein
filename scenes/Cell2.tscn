@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://ctkg6m7r3ic3v" path="res://materials/mat_Glass.tres" id="2_ec4q2"]
 [ext_resource type="Script" path="res://scripts/Cell.gd" id="2_fvc4v"]
 [ext_resource type="Material" uid="uid://cdigk0070t2lm" path="res://materials/mat_Cell_Floor.tres" id="2_gawot"]
-[ext_resource type="Material" path="res://materials/mat_Cell.tres" id="2_vjhjb"]
+[ext_resource type="Material" uid="uid://cap6borcmu54o" path="res://materials/mat_Cell.tres" id="2_vjhjb"]
 [ext_resource type="Material" uid="uid://dkgo3p7m7b45t" path="res://materials/mat_Cell_Baseboard.tres" id="3_7j636"]
 [ext_resource type="PackedScene" uid="uid://slk3y0cpx58g" path="res://scenes/VisualNovel_Hillary.tscn" id="3_joc7s"]
 [ext_resource type="Material" uid="uid://dgk8wa3isyon8" path="res://materials/mat_Bed_Frame.tres" id="5_au6pl"]
@@ -15,7 +15,7 @@
 [ext_resource type="Material" uid="uid://bggfkyj3dnw3y" path="res://materials/mat_Blanket.tres" id="7_pp4p3"]
 [ext_resource type="Material" uid="uid://csjeqjyos32b8" path="res://materials/mat_Cell_Door.tres" id="8_0g8sp"]
 [ext_resource type="Material" uid="uid://c6cib846pj4d0" path="res://materials/mat_Cell_DoorTrim.tres" id="10_e4ot3"]
-[ext_resource type="Material" uid="uid://dub3c72mbnfw5" path="res://materials/mat_sink.tres" id="13_su8vw"]
+[ext_resource type="Material" path="res://materials/mat_sink.tres" id="13_su8vw"]
 [ext_resource type="Script" path="res://scripts/Interactable.gd" id="15_spjln"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccp1j"]

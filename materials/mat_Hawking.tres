@@ -4,10 +4,8 @@
 load_path = "res://.godot/imported/wheelchair_Ch23_1001_Diffuse.png-1ee2440bc299c771d1401c2659cb4469.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8xamr"]
-load_path = "res://.godot/imported/wheelchair_Ch23_1001_Glossiness.png-674947219be1f9059a38e36ab9c70d4c.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pn31h"]
-load_path = "res://.godot/imported/wheelchair_Ch23_1001_Normal.png-0604e1c38e9e9b56d22117705d282fa4.s3tc.ctex"
 
 [resource]
 resource_name = "Ch23_body"
