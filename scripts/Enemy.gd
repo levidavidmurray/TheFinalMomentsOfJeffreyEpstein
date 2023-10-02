@@ -93,6 +93,8 @@ func _on_health_component_death():
 	col.disabled = true
 	death_particles.emitting = true
 	death.emit()
+	await get_tree().create_timer(2.0).timeout
+	queue_free()
 	# animator.play("Death")
 
 func _on_attack_box_body_entered(body:Node3D):

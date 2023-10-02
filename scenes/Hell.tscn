@@ -42,7 +42,7 @@ sfx_voicelines = Array[AudioStream]([ExtResource("3_3yxky"), ExtResource("4_fdnj
 shape = SubResource("ConcavePolygonShape3D_i0avu")
 
 [node name="Blood" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636518, 0.278685, -1.15511)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636518, 0.0711736, -1.15511)
 mesh = SubResource("PlaneMesh_llbcy")
 
 [node name="Rock" type="MeshInstance3D" parent="."]
@@ -128,3 +128,6 @@ shadow_enabled = true
 
 [node name="SFX_Voiceline" type="AudioStreamPlayer" parent="."]
 volume_db = 5.0
+
+[editable path="Enemy"]
+[editable path="Enemy/Wheelchair"]
