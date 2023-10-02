@@ -1,10 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://dghkp85x4rokx"]
+[gd_scene load_steps=22 format=3 uid="uid://dghkp85x4rokx"]
 
 [ext_resource type="Material" uid="uid://do81qbv5o3b28" path="res://materials/mat_Blood.tres" id="1_5og1w"]
 [ext_resource type="Script" path="res://scripts/Hell.gd" id="1_m1roq"]
 [ext_resource type="PackedScene" uid="uid://3dfsho5gpqt4" path="res://scenes/VisualNovel_Hitler.tscn" id="2_dj44v"]
 [ext_resource type="PackedScene" uid="uid://dc8ul4wbvo0vs" path="res://scenes/Enemy.tscn" id="2_koj0b"]
+[ext_resource type="AudioStream" uid="uid://b8fc0kv6a2l5y" path="res://sfx/Hawking1.WAV" id="3_3yxky"]
 [ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/hell_env.tres" id="3_f3ffy"]
+[ext_resource type="AudioStream" uid="uid://c7jqma0em3eod" path="res://sfx/Hawking2.WAV" id="4_fdnjc"]
+[ext_resource type="AudioStream" uid="uid://bxf4cy583yqfb" path="res://sfx/Hawking3.WAV" id="5_8ofo2"]
+[ext_resource type="AudioStream" uid="uid://bgv60vgblexgy" path="res://sfx/Hawking4.WAV" id="6_kbewm"]
+[ext_resource type="AudioStream" uid="uid://7frbxi2kidl5" path="res://sfx/Hawking5.WAV" id="7_iddhi"]
+[ext_resource type="AudioStream" uid="uid://d14omrm8hfur7" path="res://sfx/Hawking6.WAV" id="8_axqap"]
+[ext_resource type="AudioStream" uid="uid://ko1fmf2p4m85" path="res://sfx/Hawking7.WAV" id="9_4brcd"]
+[ext_resource type="AudioStream" uid="uid://dfwiyfifhm7ci" path="res://sfx/Hawking8.WAV" id="10_7041q"]
+[ext_resource type="AudioStream" uid="uid://j67ht8m2qakf" path="res://sfx/Hawking9.WAV" id="11_tgw0s"]
+[ext_resource type="AudioStream" uid="uid://c8367jiij1t14" path="res://sfx/Hawking10.WAV" id="12_36bhc"]
+[ext_resource type="AudioStream" uid="uid://ivjwcmem2cxa" path="res://sfx/Hawking11.WAV" id="13_aby3v"]
+[ext_resource type="AudioStream" uid="uid://d1jlu0gmv0es6" path="res://sfx/Hawking12.WAV" id="14_fid0k"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i0avu"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
@@ -22,6 +34,7 @@ material = SubResource("StandardMaterial3D_2tvka")
 [node name="Hell" type="Node3D"]
 script = ExtResource("1_m1roq")
 vn_hitler = ExtResource("2_dj44v")
+sfx_voicelines = Array[AudioStream]([ExtResource("3_3yxky"), ExtResource("4_fdnjc"), ExtResource("5_8ofo2"), ExtResource("6_kbewm"), ExtResource("7_iddhi"), ExtResource("8_axqap"), ExtResource("9_4brcd"), ExtResource("10_7041q"), ExtResource("11_tgw0s"), ExtResource("12_36bhc"), ExtResource("13_aby3v"), ExtResource("14_fid0k")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -112,3 +125,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 light_color = Color(0.968627, 0.352941, 0.431373, 1)
 light_angular_distance = 0.25
 shadow_enabled = true
+
+[node name="SFX_Voiceline" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0

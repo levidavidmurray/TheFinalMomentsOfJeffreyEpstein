@@ -2,9 +2,14 @@ extends Node3D
 
 @export var hitler_delay = 2.5
 @export var vn_hitler: PackedScene
+@export var sfx_voicelines: Array[AudioStream]
+
+@onready var sfx_voiceline: AudioStreamPlayer = $SFX_Voiceline
 
 var enemies
 var enemies_remaining = 0
+
+var sfx_played_map = {}
 
 func _ready():
 	enemies = get_tree().get_nodes_in_group("Enemy")
@@ -22,17 +27,26 @@ func _on_enemy_death():
 		add_child(vn)
 		GameManager.play_music("res://music/Hitler.ogg")
 	else:
-		var closest_enemy = _get_enemy_closest_to_player()
-		closest_enemy.say_voiceline()
+		_play_voiceline()
 
-func _get_enemy_closest_to_player() -> Enemy:
-	var closest_dist = 100000
-	var closest_enemy = null
-	for enemy in enemies:
-		if !is_instance_valid(enemy) or !enemy.target:
-			continue
-		var target = enemy.target
-		var distance = (target.global_position - enemy.global_position).length()
-		if distance < closest_dist:
-			closest_enemy = enemy
-	return closest_enemy
+func _play_voiceline():
+	var stream = sfx_voicelines[randi() % sfx_voicelines.size()]
+
+	while sfx_played_map.has(stream):
+		stream = sfx_voicelines[randi() % sfx_voicelines.size()]
+
+	sfx_played_map[stream] = true
+	sfx_voiceline.stream = stream
+	sfx_voiceline.play()
+
+# func _get_enemy_closest_to_player() -> Enemy:
+# 	var closest_dist = 100000
+# 	var closest_enemy = null
+# 	for enemy in enemies:
+# 		if !is_instance_valid(enemy) or !enemy.target:
+# 			continue
+# 		var target = enemy.target
+# 		var distance = (target.global_position - enemy.global_position).length()
+# 		if distance < closest_dist:
+# 			closest_enemy = enemy
+# 	return closest_enemy
