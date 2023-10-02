@@ -45,8 +45,8 @@ var on_did_become_grounded: Callable
 var disable_input = false
 
 func _ready() -> void:
-	GameManager.player_ready(self)
 	capture_mouse()
+	GameManager.player_ready(self)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("exit"): get_tree().quit()

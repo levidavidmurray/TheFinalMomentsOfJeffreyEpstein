@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/VisualNovel.gd" id="1_ski6v"]
 [ext_resource type="Resource" uid="uid://ddpg4donpgqab" path="res://dialogue/hitler.dialogue" id="2_82rl5"]
-[ext_resource type="Texture2D" uid="uid://bjtmn8te8g00o" path="res://vn_screens/femme-hitler.png" id="3_jcckl"]
+[ext_resource type="Texture2D" uid="uid://ditsiap5w6hdy" path="res://vn_screens/femme-hitler.jpg" id="4_scqad"]
 
 [node name="VisualNovel" type="CanvasLayer"]
 script = ExtResource("1_ski6v")
 dialogue_resource = ExtResource("2_82rl5")
-background = ExtResource("3_jcckl")
+background = ExtResource("4_scqad")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -15,5 +15,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_jcckl")
+texture = ExtResource("4_scqad")
 expand_mode = 2

@@ -10,19 +10,16 @@ config_version=5
 
 [application]
 
-config/name="TheFinalMomentsOfJefferyEpstein"
+config/name="The Final Moments Of Jeffery Epstein"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
 GameManager="*res://scripts/GameManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-
-[display]
-
-window/size/mode=3
 
 [dotnet]
 

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/VisualNovel.gd" id="1_jao4a"]
 [ext_resource type="Resource" uid="uid://beo4s8v3s43as" path="res://dialogue/hillary.dialogue" id="2_eyo8f"]
-[ext_resource type="Texture2D" uid="uid://cc8kj5o8hkj6k" path="res://vn_screens/hillary-clinton.png" id="3_tb4iw"]
+[ext_resource type="Texture2D" uid="uid://4053abuy5fac" path="res://vn_screens/hillary-clinton.jpg" id="4_0hhhv"]
 
 [node name="VisualNovel" type="CanvasLayer"]
 script = ExtResource("1_jao4a")
 dialogue_resource = ExtResource("2_eyo8f")
-background = ExtResource("3_tb4iw")
+background = ExtResource("4_0hhhv")
 intro_delay = 1.0
 exit_delay = 0.0
 
@@ -17,5 +17,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_tb4iw")
+texture = ExtResource("4_0hhhv")
 expand_mode = 2

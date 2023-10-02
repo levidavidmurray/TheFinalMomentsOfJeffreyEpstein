@@ -2,11 +2,24 @@ extends Node
 
 var game_restart_delay = 3.5
 var player: Player
+var did_connect_play_button = false
+
+func _on_play_button_pressed():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	player.disable_input = false
+	player.capture_mouse()
+	get_node("/root/Main/StartGameLayer").visible = false
 
 func player_ready(_player: Player):
 	print("GameManager::player_ready")
 	player = _player
 	player.death.connect(_on_player_death)
+
+	if not did_connect_play_button:
+		player.disable_input = true
+		player.release_mouse()
+		var play_button: Button = get_node("/root/Main/StartGameLayer/Panel/CenterContainer/MarginContainer/PlayButton")
+		play_button.pressed.connect(_on_play_button_pressed)
 
 func visual_novel_mode():
 	player.get_node("CanvasLayer").visible = false
