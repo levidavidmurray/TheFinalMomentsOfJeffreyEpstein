@@ -91,6 +91,10 @@ func handle_shoot() -> void:
 		gun.shoot()
 
 func handle_interactable():
+	
+	if disable_input:
+		return
+	
 	if interact_ray.is_colliding():
 		var body = interact_ray.get_collider()
 		var interactable = body.get_node("Interactable") as Interactable
@@ -105,7 +109,9 @@ func activate_hell_mode():
 	is_hell_mode = true
 	$Camera/DirectionalLight3D.visible = true
 	sfx_footsteps = sfx_footsteps_hell
+	$SFX_Fall.play()
 	on_did_become_grounded = func():
+		$SFX_Fall.stop()
 		print("hell impact")
 		GameManager.music_hell()
 		sfx_hell_impact.play()

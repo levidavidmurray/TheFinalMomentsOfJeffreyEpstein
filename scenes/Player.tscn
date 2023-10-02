@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bb2xr3x6yrncg"]
+[gd_scene load_steps=34 format=3 uid="uid://bb2xr3x6yrncg"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_5goeo"]
 [ext_resource type="Script" path="res://scripts/Gun.gd" id="2_7jq0l"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://miu2d4w2ifg7" path="res://sfx/footstep_8.ogg" id="10_2c3ac"]
 [ext_resource type="Script" path="res://scripts/ScreenShake.gd" id="13_amhg6"]
 [ext_resource type="AudioStream" uid="uid://bpcbbck0hdcne" path="res://sfx/Impact Hell Bucket.wav" id="14_0tcxn"]
+[ext_resource type="AudioStream" uid="uid://bqa6o4aybw83s" path="res://sfx/fall.wav" id="24_516km"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kj3u"]
 radius = 0.45
@@ -212,6 +213,10 @@ stream = ExtResource("14_0tcxn")
 volume_db = -8.0
 bus = &"SFX"
 attenuation_filter_cutoff_hz = 3000.0
+
+[node name="SFX_Fall" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("24_516km")
+volume_db = -15.238
 
 [connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
 [connection signal="timeout" from="Camera/ScreenShake/Frequency" to="Camera/ScreenShake" method="_on_frequency_timeout"]

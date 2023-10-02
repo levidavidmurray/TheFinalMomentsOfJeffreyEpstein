@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/Hell.gd" id="1_m1roq"]
 [ext_resource type="PackedScene" uid="uid://3dfsho5gpqt4" path="res://scenes/VisualNovel_Hitler.tscn" id="2_dj44v"]
 [ext_resource type="PackedScene" uid="uid://dc8ul4wbvo0vs" path="res://scenes/Enemy.tscn" id="2_koj0b"]
-[ext_resource type="Environment" uid="uid://xv4fq6ntnf7a" path="res://scenes/hell_env.tres" id="3_f3ffy"]
+[ext_resource type="Environment" uid="uid://b01oyo8r2ygco" path="res://scenes/hell_env.tres" id="3_f3ffy"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i0avu"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
