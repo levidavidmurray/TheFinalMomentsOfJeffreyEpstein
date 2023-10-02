@@ -21,3 +21,18 @@ func _on_enemy_death():
 		var vn = vn_hitler.instantiate()
 		add_child(vn)
 		GameManager.play_music("res://music/Hitler.ogg")
+	else:
+		var closest_enemy = _get_enemy_closest_to_player()
+		closest_enemy.say_voiceline()
+
+func _get_enemy_closest_to_player() -> Enemy:
+	var closest_dist = 100000
+	var closest_enemy = null
+	for enemy in enemies:
+		if !is_instance_valid(enemy) or !enemy.target:
+			continue
+		var target = enemy.target
+		var distance = (target.global_position - enemy.global_position).length()
+		if distance < closest_dist:
+			closest_enemy = enemy
+	return closest_enemy

@@ -11,11 +11,14 @@ signal death
 @export var sfx_aggro: AudioStream
 @export var sfx_attacks: Array[AudioStream]
 @export var sfx_attacks_2: Array[AudioStream]
+@export var sfx_voicelines: Array[AudioStream]
 @export var sfx_death: AudioStream
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
 @onready var sfx: AudioStreamPlayer3D = $SFX
 @onready var sfx_2: AudioStreamPlayer3D = $SFX2
+@onready var sfx_chair: AudioStreamPlayer3D = $SFX_Chair
+@onready var sfx_voiceline: AudioStreamPlayer3D = $SFXVoiceline
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var start_pos = global_position
 @onready var mesh = $Wheelchair
@@ -59,6 +62,10 @@ func handle_patrol():
 	else:
 		global_position = start_pos
 
+func say_voiceline():
+	sfx_voiceline.stream = sfx_voicelines[randi() % sfx_voicelines.size()]
+	sfx_voiceline.play()
+
 func can_attack():
 	if is_dead(): return false
 	if not target: return false
@@ -84,6 +91,7 @@ func is_dead() -> bool:
 	return health_component.is_dead()
 
 func _on_health_component_death():
+	sfx_chair.stop()
 	sfx.stream = sfx_death
 	sfx.play()
 	mesh.visible = false
@@ -106,8 +114,7 @@ func _on_attack_box_body_exited(body:Node3D):
 func _on_aggro_box_body_entered(body:Node3D):
 	if is_dead(): return
 	if body is Player:
-		sfx.stream = sfx_aggro
-		sfx.play()
+		sfx_chair.play()
 		target = body
 		target.death.connect(_on_target_death)
 
