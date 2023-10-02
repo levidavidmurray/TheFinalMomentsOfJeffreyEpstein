@@ -5,7 +5,6 @@ var player: Player
 var did_connect_play_button = false
 
 func _on_play_button_pressed():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	player.disable_input = false
 	player.capture_mouse()
 	get_node("/root/Main/StartGameLayer").visible = false
@@ -14,6 +13,7 @@ func player_ready(_player: Player):
 	print("GameManager::player_ready")
 	player = _player
 	player.death.connect(_on_player_death)
+	player.camera.attributes.dof_blur_far_distance = 1.5
 
 	if not did_connect_play_button:
 		player.disable_input = true

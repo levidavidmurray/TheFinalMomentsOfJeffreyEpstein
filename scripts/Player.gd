@@ -6,6 +6,7 @@ signal death
 @export_range(10, 400, 1) var acceleration: float = 100 # m/s^2
 @export var speed_cell = 4
 @export var speed_hell = 7
+@export var hell_dof = 6.5
 
 @export_range(0.1, 3.0, 0.1) var jump_height: float = 1 # m
 @export_range(0.1, 3.0, 0.1, "or_greater") var camera_sens: float = 1
@@ -111,6 +112,8 @@ func activate_hell_mode():
 	sfx_footsteps = sfx_footsteps_hell
 	$SFX_Fall.play()
 	on_did_become_grounded = func():
+		var cam_attrs: CameraAttributesPractical = camera.attributes
+		cam_attrs.dof_blur_far_distance = hell_dof
 		$SFX_Fall.stop()
 		print("hell impact")
 		GameManager.music_hell()

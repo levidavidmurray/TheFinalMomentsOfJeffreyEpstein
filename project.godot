@@ -21,6 +21,10 @@ config/windows_native_icon="res://icon.ico"
 GameManager="*res://scripts/GameManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[display]
+
+window/size/mode=3
+
 [dotnet]
 
 project/assembly_name="TheFinalMomentsOfJefferyEpstein"
