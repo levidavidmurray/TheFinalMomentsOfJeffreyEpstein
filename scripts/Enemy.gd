@@ -39,7 +39,9 @@ func _physics_process(delta):
 func handle_aggro():
 	# move towards target
 	var dir = target.global_position - global_position
+
 	look_at(target.global_position, Vector3.UP)
+
 	if can_attack():
 		print("target in attack box: ", target_in_attack_box)
 		velocity = Vector3.ZERO
