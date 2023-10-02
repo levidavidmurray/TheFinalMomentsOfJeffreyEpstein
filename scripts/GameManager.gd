@@ -38,7 +38,6 @@ func end_game():
 	player.get_node("CanvasLayer").visible = false
 	player.disable_input = true
 	player.release_mouse()
-	
 
 func _on_player_death():
 	music_player().stop()

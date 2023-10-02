@@ -183,10 +183,8 @@ func _handle_footstep():
 func get_time() -> float:
 	return Time.get_ticks_msec() / 1000.0
 
-
 func _on_button_restart_button_up():
 	get_tree().reload_current_scene()
-
 
 func _on_button_quit_button_up():
 	get_tree().quit()

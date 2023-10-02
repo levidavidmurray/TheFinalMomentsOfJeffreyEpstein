@@ -6,7 +6,7 @@ extends Node3D
 func _on_noose_interacted():
 	var player = GameManager.player
 	player.interact_label.visible = false
-	$CanvasLayer/Question.visible = true
+	$CanvasLayer.visible = true
 	player.disable_input = true
 	player.release_mouse()
 
@@ -16,7 +16,7 @@ func _on_letter_interacted():
 
 func go_to_hell():
 	var player = GameManager.player
-	$CanvasLayer/Question.visible = false
+	$CanvasLayer.visible = false
 	player.disable_input = false
 	player.capture_mouse()
 	if world_env:

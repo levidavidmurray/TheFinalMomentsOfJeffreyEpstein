@@ -78,21 +78,28 @@ grow_vertical = 2
 texture = ExtResource("5_otf0w")
 expand_mode = 2
 
-[node name="ButtonRestart" type="Button" parent="EndGameLayer"]
-offset_left = 142.0
-offset_top = 496.0
-offset_right = 211.0
-offset_bottom = 527.0
+[node name="MarginContainer" type="MarginContainer" parent="EndGameLayer"]
+offset_right = 435.0
+offset_bottom = 94.0
+theme_override_constants/margin_left = 69
+theme_override_constants/margin_top = 205
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGameLayer/MarginContainer"]
+custom_minimum_size = Vector2(623.555, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonRestart" type="Button" parent="EndGameLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Restart"
 
-[node name="ButtonQuit" type="Button" parent="EndGameLayer"]
-offset_left = 1012.0
-offset_top = 496.0
-offset_right = 1020.0
-offset_bottom = 504.0
+[node name="ButtonQuit" type="Button" parent="EndGameLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[connection signal="button_up" from="EndGameLayer/ButtonRestart" to="Player" method="_on_button_restart_button_up"]
-[connection signal="button_up" from="EndGameLayer/ButtonQuit" to="Player" method="_on_button_quit_button_up"]
+[connection signal="button_up" from="EndGameLayer/MarginContainer/VBoxContainer/ButtonRestart" to="Player" method="_on_button_restart_button_up"]
+[connection signal="button_up" from="EndGameLayer/MarginContainer/VBoxContainer/ButtonQuit" to="Player" method="_on_button_quit_button_up"]
 
 [editable path="Player"]

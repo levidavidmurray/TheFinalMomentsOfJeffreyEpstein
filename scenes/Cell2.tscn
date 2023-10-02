@@ -1,10 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dsjd3gbnh40dr"]
+[gd_scene load_steps=22 format=3 uid="uid://dsjd3gbnh40dr"]
 
 [ext_resource type="PackedScene" uid="uid://btap0vy0bacm2" path="res://models/EpsteinCell_2.glb" id="1_2w5ph"]
 [ext_resource type="Material" uid="uid://ctkg6m7r3ic3v" path="res://materials/mat_Glass.tres" id="2_ec4q2"]
 [ext_resource type="Script" path="res://scripts/Cell.gd" id="2_fvc4v"]
 [ext_resource type="Material" uid="uid://cdigk0070t2lm" path="res://materials/mat_Cell_Floor.tres" id="2_gawot"]
-[ext_resource type="Material" path="res://materials/mat_Cell.tres" id="2_vjhjb"]
+[ext_resource type="Material" uid="uid://cap6borcmu54o" path="res://materials/mat_Cell.tres" id="2_vjhjb"]
 [ext_resource type="Material" uid="uid://dkgo3p7m7b45t" path="res://materials/mat_Cell_Baseboard.tres" id="3_7j636"]
 [ext_resource type="PackedScene" uid="uid://slk3y0cpx58g" path="res://scenes/VisualNovel_Hillary.tscn" id="3_joc7s"]
 [ext_resource type="Material" uid="uid://dgk8wa3isyon8" path="res://materials/mat_Bed_Frame.tres" id="5_au6pl"]
@@ -15,7 +15,7 @@
 [ext_resource type="Material" uid="uid://bggfkyj3dnw3y" path="res://materials/mat_Blanket.tres" id="7_pp4p3"]
 [ext_resource type="Material" uid="uid://csjeqjyos32b8" path="res://materials/mat_Cell_Door.tres" id="8_0g8sp"]
 [ext_resource type="Material" uid="uid://c6cib846pj4d0" path="res://materials/mat_Cell_DoorTrim.tres" id="10_e4ot3"]
-[ext_resource type="Material" uid="uid://dub3c72mbnfw5" path="res://materials/mat_sink.tres" id="13_su8vw"]
+[ext_resource type="Material" path="res://materials/mat_sink.tres" id="13_su8vw"]
 [ext_resource type="Script" path="res://scripts/Interactable.gd" id="15_spjln"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccp1j"]
@@ -26,6 +26,10 @@ size = Vector3(1, 0.005, 0.685)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r0oaw"]
 points = PackedVector3Array(-0.5, -0.0025, -0.3425, -0.5, 0.0025, -0.3425, 0.5, -0.0025, -0.3425, -0.5, -0.0025, 0.3425, -0.5, 0.0025, 0.3425, 0.5, 0.0025, -0.3425, 0.5, -0.0025, 0.3425, 0.5, 0.0025, 0.3425)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmcwx"]
+line_spacing = 5.7
+outline_size = 1
 
 [node name="Cell2" instance=ExtResource("1_2w5ph")]
 script = ExtResource("2_fvc4v")
@@ -152,46 +156,68 @@ shadow_enabled = true
 shadow_blur = 1.16
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
-
-[node name="Question" type="Panel" parent="CanvasLayer" index="0"]
 visible = false
-offset_left = 702.0
-offset_top = 496.0
-offset_right = 1149.0
-offset_bottom = 649.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="QuestionText" type="Label" parent="CanvasLayer/Question" index="0"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 33.0
-offset_right = 408.0
-offset_bottom = 111.0
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Question" type="Panel" parent="CanvasLayer/CenterContainer" index="0"]
+custom_minimum_size = Vector2(416, 190.74)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/CenterContainer/Question" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/Question/MarginContainer2" index="0"]
+layout_mode = 2
+
+[node name="QuestionText" type="Label" parent="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Do you accept the lord Jesus Christ into 
 your heart and repent from your grievous sins?"
+label_settings = SubResource("LabelSettings_qmcwx")
+horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 2
+uppercase = true
 
-[node name="ButtonYes" type="Button" parent="CanvasLayer/Question" index="1"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 123.0
-offset_right = 124.0
-offset_bottom = 154.0
-size_flags_horizontal = 4
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ButtonYes" type="Button" parent="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
-text = "Yes (Insincere)"
+text = "Yes"
 icon_alignment = 1
 
-[node name="ButtonNo" type="Button" parent="CanvasLayer/Question" index="2"]
-layout_mode = 0
-offset_left = 397.0
-offset_top = 122.0
-offset_right = 428.0
-offset_bottom = 153.0
+[node name="ButtonNo" type="Button" parent="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "No
 "
 
 [connection signal="interacted" from="Cell/Noose/StaticBody3D/Interactable" to="." method="_on_noose_interacted" flags=18]
 [connection signal="interacted" from="Letter/Interactable" to="." method="_on_letter_interacted" flags=18]
-[connection signal="button_up" from="CanvasLayer/Question/ButtonYes" to="." method="_on_button_yes_button_up"]
-[connection signal="button_up" from="CanvasLayer/Question/ButtonNo" to="." method="_on_button_no_button_up"]
+[connection signal="button_up" from="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/ButtonYes" to="." method="_on_button_yes_button_up"]
+[connection signal="button_up" from="CanvasLayer/CenterContainer/Question/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/ButtonNo" to="." method="_on_button_no_button_up"]
