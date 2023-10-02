@@ -19,6 +19,8 @@ func fps_mode():
 	player.capture_mouse()
 	
 func go_to_hell():
+	
+	
 	player.activate_hell_mode()
 	music_player().stop()
 	print("Go to hell")

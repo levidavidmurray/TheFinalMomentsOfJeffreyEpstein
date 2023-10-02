@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://chu230jovwvd4"]
 
 [ext_resource type="PackedScene" uid="uid://dtfwclh23j353" path="res://models/epsteincell.glb" id="1_0fn2y"]
-[ext_resource type="Material" path="res://materials/mat_bed.tres" id="2_g50k1"]
+[ext_resource type="Material" uid="uid://c3d3wul4bplsx" path="res://materials/mat_bed.tres" id="2_g50k1"]
 [ext_resource type="Script" path="res://scripts/Cell.gd" id="2_pe78t"]
 [ext_resource type="PackedScene" uid="uid://slk3y0cpx58g" path="res://scenes/VisualNovel_Hillary.tscn" id="3_8gdfj"]
-[ext_resource type="Material" path="res://materials/mat_sink.tres" id="3_itaid"]
-[ext_resource type="Material" uid="uid://cap6borcmu54o" path="res://materials/mat_Cell.tres" id="3_usic3"]
+[ext_resource type="Material" uid="uid://dub3c72mbnfw5" path="res://materials/mat_sink.tres" id="3_itaid"]
+[ext_resource type="Material" path="res://materials/mat_Cell.tres" id="3_usic3"]
 
 [node name="Cell" instance=ExtResource("1_0fn2y")]
 script = ExtResource("2_pe78t")

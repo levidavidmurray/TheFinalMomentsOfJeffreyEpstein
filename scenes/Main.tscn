@@ -12,6 +12,44 @@ unique_name_in_owner = true
 transform = Transform3D(-0.463296, 0, 0.886204, 0, 1, 0, -0.886204, 0, -0.463296, 0.564, 0.342, -0.885)
 acceleration = 50.0
 
+[node name="Question" type="Panel" parent="Player/CanvasLayer" index="3"]
+visible = false
+offset_left = 702.0
+offset_top = 496.0
+offset_right = 1149.0
+offset_bottom = 649.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="QuestionText" type="TextEdit" parent="Player/CanvasLayer/Question"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 7.0
+offset_right = 417.0
+offset_bottom = 123.0
+text = "Do you accept the lord Jesus Christ to your heart and repent from your grievous sins?"
+wrap_mode = 1
+
+[node name="ButtonYes" type="Button" parent="Player/CanvasLayer/Question"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 123.0
+offset_right = 124.0
+offset_bottom = 154.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Yes (Insincere)"
+icon_alignment = 1
+
+[node name="ButtonNo" type="Button" parent="Player/CanvasLayer/Question"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 122.0
+offset_right = 428.0
+offset_bottom = 153.0
+text = "No
+"
+
 [node name="SFX_HellImpact" parent="Player" index="5"]
 volume_db = -15.0
 
